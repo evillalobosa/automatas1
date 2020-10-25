@@ -1,0 +1,16 @@
+/* Load config*/
+@import "colors.css";
+
+body {
+    background-color: var(--workbench-bg);
+    width: 100%;
+    height: 100vh;
+    background-size: 2em 2em;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    text-decoration: none;
+}
