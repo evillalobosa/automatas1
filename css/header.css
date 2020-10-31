@@ -1,0 +1,34 @@
+.header {
+    background: var(--header-bg);
+    height: 15%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--wall-bg);
+    font-size: 3vh;
+    font-family: Rubik, sans-serif;
+}
+.logo, .github {
+    display: flex;
+    align-items: center;
+}
+.logo img {
+    width: 10vh;
+    height: 10vh;
+}
+.github {
+    background: var(--wall-bg);
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+.github a {
+    text-decoration: none;
+    color: var(--header-bg);
+    padding: 0px 10px;
+}
+.github img {
+    width: 5vh;
+    height: 5vh;
+}

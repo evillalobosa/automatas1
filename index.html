@@ -4,14 +4,64 @@
         <meta charset="utf-8">
         <title>Automatas</title>
         <!-- Favicon -->
-        <!-- <link rel="icon" type="image/png" href="icons/favicon.png"> -->
+        <link rel="icon" type="image/png" href="img/robotico.svg">
         <!-- Fonts: Poppins, Robot Condensed, Rubik -->
-         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,300&family=Roboto+Condensed:ital,wght@0,300;0,400;1,300&family=Rubik:wght@600;800;900&display=swap" rel="stylesheet">
+         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,300&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300&family=Rubik:wght@600;800;900&display=swap" rel="stylesheet">
         <!-- Imports -->
         <link rel="stylesheet" href="css/master.css">
+        <script defer src="js/transition.js"></script>
         <script defer src="js/popup.js"></script>
     </head>
     <body>
-
+        <div class="header">
+            <div class="logo">
+                <img src="img/robotico.svg" alt="Logo">
+                <h1>Automatas</h1>
+            </div>
+            <div class="github">
+                <img src="icons/github-dark.png" alt="Github logo icon">
+                <a href="https://github.com/yowls/automatas1">GitHub</a>
+            </div>
+        </div>
+        <div class="tips">
+                <h3>Algunos tips para un buen uso:</h3>
+                <marquee behavior="scroll" direction="left">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</marquee>
+        </div>
+        <div class="wall">
+            <div class="formulario">
+                <div class="automata">
+                    <h2>Ingresar un automata</h2>
+                    <!-- Ingresar cantidad de estados del automata -->
+                    <div class="estados">
+                        <label for="insertarInicioArista">Cantidad de estados:</label>
+                        <input type="number" id="insertarInicioArista" name="automata" autocomplete="off" value="1" min="1" required>
+                    </div>
+                    <!-- Sea AFD o ANFD -->
+                    <div class="afd-or-anfd">
+                        <label for="dirigido">AFD</label>
+                        <input type="checkbox" id="insertarDirigido" name="automata">
+                        <label for="dirigido">AFND</label>
+                    </div>
+                    <!-- Submit -->
+                    <button type="button" onclick="setVertice()">Enter</button>
+                </div>
+                <div class="alfabeto">
+                    <h2>Ingresar alfabeto</h2>
+                    <div class="tamano">
+                        <label for="insertarInicioArista">Tamaño del alfabeto:</label>
+                        <input type="number" id="insertarInicioArista" name="automata" autocomplete="off" value="1" min="1" required>
+                    </div>
+                    <!-- Submit -->
+                    <button type="button" onclick="setArista()">Enter</button>
+                </div>
+            </div>
+            <div class="transicion">
+                <div class="sub-transicion" id="sub-transicion"></div>
+                <button type="button" onclick="addT()">Añadir una transicion de estado</button>
+            </div>
+            <div class="finalizar">
+                <button type="button" onclick="()">Finalizar creado del automata</button>
+            </div>
+        </div>
     </body>
 </html>

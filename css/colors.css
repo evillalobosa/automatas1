@@ -1,10 +1,14 @@
 /*Color scheme*/
 :root {
-  --wall-bg:		#0c2461;
+  --wall-bg:		#edf6f9;
+  --header-bg:      #14213d;
+
+  --btn1:		#91EAE4;
+  --btn2:		#74ebd5;
 
   --red:		#e55039;
-  --yellow:		#fad390;
+  --yellow:		#ffe6a7;
   --orange:		#fa983a;
   --blue:		#4a69bd;
-  --green:		#82ccdd;
+  --green:		#78e08f;
 }
