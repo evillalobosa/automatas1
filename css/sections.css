@@ -1,0 +1,31 @@
+.descripcion {
+    width: 30%;
+}
+.descripcion-wrapper {
+    height: 80%;
+    transform: translate(0%, 10%);
+    border-right: 2px solid rgba(255,255,255,0.3);
+}
+
+.tittle {
+    display: flex;
+    justify-content: center;
+}
+.tittle img {
+    margin-right: 20px;
+}
+.sub-tittle, .sub-descripcion {
+    text-align: center;
+}
+.sub-descripcion {
+    font-size: 12px;
+    padding: 20px 30px;
+}
+
+.formulario {
+    width: 70%;
+    height: 90%;
+    display: flex;
+    justify-content: space-around;
+    transform: translate(0%, 10%);
+}

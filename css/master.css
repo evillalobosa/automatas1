@@ -1,8 +1,10 @@
 /* Load config*/
 @import "colors.css";
 @import "header.css";
-@import "formulario.css";
-@import "wall.css";
+@import "sections.css";
+@import "alfabeto.css";
+@import "automata.css";
+@import "operations.css";
 
 body {
     width: 100%;
@@ -18,7 +20,7 @@ body {
 }
 
 .tips {
-    background-color: var(--blue);
+    background-color: var(--header-bg);
     color: white;
     display: flex;
     align-items: center;

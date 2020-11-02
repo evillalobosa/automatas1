@@ -1,0 +1,22 @@
+.alfabeto {
+    background-color: var(--alfabeto-bg);
+    color: var(--white-fg);
+    display: flex;
+    height: 40%;
+}
+
+.tamano input {
+    border: none;
+    height: 30px;
+    width: 50px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.tabla-alfabeto {
+    height: 100%;
+}
+.tabla-alfabeto table, .tabla-alfabeto caption {
+    text-align: center;
+    min-width: 160px;
+}
