@@ -1,10 +1,14 @@
 /*Color scheme*/
 :root {
-  --wall-bg:		#edf6f9;
-  --header-bg:      #14213d;
+  --white-fg:		#edf6f9;
+  --black-fg:		#003049;
 
-  --btn1:		#91EAE4;
-  --btn2:		#74ebd5;
+  --header-bg:		#14213d;
+  --alfabeto-bg:	#023e8a;
+  --automata-bg:	#0096c7;
+  --operacion-bg:	#90e0ef;
+
+  --afd-anfd:		#91EAE4;
 
   --red:		#e55039;
   --yellow:		#ffe6a7;

@@ -2,8 +2,8 @@
     width: 30%;
 }
 .descripcion-wrapper {
-    height: 80%;
-    transform: translate(0%, 10%);
+    height: 60%;
+    transform: translate(0%, 30%);
     border-right: 2px solid rgba(255,255,255,0.3);
 }
 
