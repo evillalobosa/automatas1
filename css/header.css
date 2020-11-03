@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--wall-bg);
+    color: var(--white-fg);
     font-size: 3vh;
     font-family: Rubik, sans-serif;
 }
@@ -18,14 +18,14 @@
     height: 10vh;
 }
 .github {
-    background: var(--wall-bg);
+    background: var(--white-fg);
     padding: 5px;
     margin-right: 10px;
     border-radius: 10px;
 }
 .github a {
     text-decoration: none;
-    color: var(--header-bg);
+    color: var(--black-fg);
     padding: 0px 10px;
 }
 .github img {

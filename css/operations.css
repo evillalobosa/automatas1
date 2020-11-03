@@ -18,10 +18,11 @@
     padding: 10px 0px;
 }
 .link-menu {
-    background: rgba(250, 250, 250, 0.3);
-    color: var(--black-fg);
+    background: var(--alfabeto-bg);
+    color: var(--white-fg);
     display: flex;
     text-decoration: none;
+    text-align: center;
     width: 100%;
     padding: 10px 0px;
     font-size: 18px;
@@ -38,16 +39,16 @@
     position: absolute;
     width: 10px;
     height: 4px;
-    background-color: var(--black-fg);
+    background-color: var(--white-fg);
     top: 9px;
 }
 .op-icon::after {
     transform: rotate(90deg);
-    transition: 0.5s linear;
+    transition: 0.3s linear;
 }
 .operacion-submenu {
-    background: var(--white-fg);
-    color: var(--black-fg);
+    background: var(--automata-bg);
+    color: var(--white-fg);
     height: 0;
     opacity: 0;
 }
