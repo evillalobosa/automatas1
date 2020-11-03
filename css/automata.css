@@ -3,6 +3,8 @@
     color: var(--white-fg);
     display: flex;
     height: 50%;
+    font-family: "Robot Condensed", sans-serif;
+    font-weight: 300;
 }
 .automata-header {
     height: 80px;
@@ -18,13 +20,16 @@
     margin-left: 10px;
     width: 50%;
     font-size: 30px;
+    font-family: "Rubik", sans-serif;
 }
 .automata-body{
     text-align: center;
 }
 .estados input {
-    border: none;
+    background: var(--white-fg);
+    color: var(--black-fg);
     text-align: center;
+    border: none;
     height: 30px;
     width: 50px;
     border-radius: 5px;
@@ -40,11 +45,11 @@
     border-radius: 20px;
     outline: none;
     transition: 0.5s;
-    background-color: var(--afd-anfd);
+    background-color: var(--yellow);
     cursor: pointer;
 }
 .afd-or-anfd input:checked[type="checkbox"] {
-    background-color: var(--afd-anfd);
+    background-color: var(--yellow);
 }
 .afd-or-anfd input[type="checkbox"]:before {
     content: '';

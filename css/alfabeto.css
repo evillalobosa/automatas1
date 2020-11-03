@@ -2,13 +2,24 @@
     background-color: var(--alfabeto-bg);
     color: var(--white-fg);
     display: flex;
-    height: 33%;
+    height: 40%;
+    font-family: "Robot Condensed", sans-serif;
+    font-weight: 300;
+}
+.sub-formulario-header {
+    font-size: 18px;
+    font-family: "Rubik", sans-serif;
 }
 
+.tamano {
+    margin: 20px 0px;
+}
 .tamano input {
-    border: none;
+    background: var(--white-fg);
+    color: var(--black-fg);
     height: 30px;
     width: 50px;
+    border: none;
     text-align: center;
     border-radius: 5px;
 }

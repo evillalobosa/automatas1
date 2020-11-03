@@ -43,14 +43,18 @@
             </div>
             <div class="formulario">
                 <div class="sub-formulario">
-                    <h2>Alfabeto</h2>
+                    <div class="sub-formulario-header">
+                        <h2>Alfabeto</h2>
+                    </div>
                     <!-- Ingresar tamaño del alfabeto  -->
                     <div class="tamano">
                         <label for="size-alfabeto">Tamaño del alfabeto:</label>
                         <input type="number" id="size-alfabeto" name="automata" autocomplete="off" value="1" min="1" required>
                     </div>
-                    <!-- Submit -->
-                    <button type="button" onclick="setAlfabeto()">Enter</button>
+                    <div class="sub-formulario-submit">
+                        <!-- Submit -->
+                        <button type="button" onclick="setAlfabeto()">Enter</button>
+                    </div>
                 </div>
                 <div class="tabla-alfabeto">
                     <table>
@@ -96,11 +100,39 @@
                         </div>
                     </div>
                     <div class="automata-submit">
-                        <div class="transicion">
-                            <!-- Muestra el popup para ingresar transiciones -->
-                            <button type="button" onclick="addT()">Añadir transiciones de estado</button>
+                        <button type="button" data-popup-target="#popup-a1">Añadir transiciones de estado</button>
+                        <!-- Muestra el popup para ingresar transiciones -->
+                        <div class="popup" id="popup-a1">
+                            <div class="popup-header">
+                                <h1>Insertar una transicion de estado</h1>
+                                <button data-close-button class="close-button">&times;</button>
+                            </div>
+                            <div class="popup-body">
+                                <!-- Descripcion afd/anfd -->
+                                <div class="transicion-descripcion">Una transicion para un automata finito determinista es: ..<br>Mientras que para un automata no finito determinista .. </div>
+                                <!-- inputs y tabla (area central)-->
+                                <div class="transicion-formulario">
+                                    <div class="transicion-subformulario">
+                                        <div class="subformulario-input">
+                                            <!-- Nombre del automata -->
+                                            <div class="input-automata">Automata: Automata1</div>
+                                            <!-- Ingreso transiciones -->
+                                            <div class="input-transiciones">
+                                                <div class="sub-transicion" id="sub-transicion"></div>
+                                                <button type="button" onclick="addT()">Añadir</button>
+                                            </div>
+                                        </div>
+                                        <div class="subformulario-tabla" id="subformulario-tabla"></div>
+                                    </div>
+                                    <!-- Tabla de estados y alfabeto del automata de ayuda -->
+                                    <div class="automata-tabla" id="automata1-tabla"></div>
+                                </div>
+                                <!-- Submit -->
+                                <div class="transicion-submit">
+                                    <button type="button" onclick="setVertice()">Finalizar</button>
+                                </div>
+                            </div>
                         </div>
-                        <!-- <div class="sub-transicion" id="sub-transicion"></div> -->
                     </div>
                 </div>
                 <div class="sub-formulario">
@@ -122,11 +154,39 @@
                         </div>
                     </div>
                     <div class="automata-submit">
-                        <div class="transicion">
-                            <!-- Muestra el popup para ingresar transiciones -->
-                            <button type="button" onclick="addT()">Añadir transiciones de estado</button>
+                        <button type="button" data-popup-target="#popup-a2">Añadir transiciones de estado</button>
+                        <!-- Muestra el popup para ingresar transiciones -->
+                        <div class="popup" id="popup-a2">
+                            <div class="popup-header">
+                                <h1>Insertar una transicion de estado</h1>
+                                <button data-close-button class="close-button">&times;</button>
+                            </div>
+                            <div class="popup-body">
+                                <!-- Descripcion afd/anfd -->
+                                <div class="transicion-descripcion">Una transicion para un automata finito determinista es: ..<br>Mientras que para un automata no finito determinista .. </div>
+                                <!-- inputs y tabla (area central)-->
+                                <div class="transicion-formulario">
+                                    <div class="transicion-subformulario">
+                                        <div class="subformulario-input">
+                                            <!-- Nombre del automata -->
+                                            <div class="input-automata">Automata: Automata1</div>
+                                            <!-- Ingreso transiciones -->
+                                            <div class="input-transiciones">
+                                                <div class="sub-transicion" id="sub-transicion"></div>
+                                                <button type="button" onclick="addT()">Añadir una transicion de estado</button>
+                                            </div>
+                                        </div>
+                                        <div class="subformulario-tabla" id="subformulario-tabla"></div>
+                                    </div>
+                                    <!-- Tabla de estados y alfabeto del automata de ayuda -->
+                                    <div class="automata-tabla" id="automata1-tabla"></div>
+                                </div>
+                                <!-- Submit -->
+                                <div class="transicion-submit">
+                                    <button type="button" onclick="setVertice()">Finalizar</button>
+                                </div>
+                            </div>
                         </div>
-                        <!-- <div class="sub-transicion" id="sub-transicion"></div> -->
                     </div>
                 </div>
             </div>

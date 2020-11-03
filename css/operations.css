@@ -3,6 +3,8 @@
     color: var(--black-fg);
     display: flex;
     height: 70%;
+    font-family: "Robot Condensed", sans-serif;
+    font-weight: 300;
 }
 .mostar-operacion {
     width: 60%;

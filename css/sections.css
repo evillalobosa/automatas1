@@ -29,3 +29,11 @@
     justify-content: space-around;
     transform: translate(0%, 10%);
 }
+.sub-formulario button[type="button"] {
+    background: var(--white-fg);
+    color: var(--black-fg);
+    padding: 7px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
