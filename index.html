@@ -16,7 +16,7 @@
         <div class="header">
             <div class="logo">
                 <img src="img/robotico.svg" alt="Logo">
-                <h1>Automatas</h1>
+                <h1>Aut&oacutematas</h1>
             </div>
             <div class="github">
                 <img src="icons/github-dark.png" alt="Github logo icon">
@@ -25,7 +25,6 @@
         </div>
         <div class="tips">
                 <h3>Algunos tips para un buen uso:</h3>
-                <marquee behavior="scroll" direction="left">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</marquee>
         </div>
         <div class="alfabeto">
             <div class="descripcion">
@@ -69,7 +68,7 @@
                         <img src="icons/automatas.svg" alt="automata-img" width="50" height="50">
                         <div class="sub-tittle">
                             <h2>Paso 2</h2>
-                            <h3>Ingresar Automatas</h3>
+                            <h3>Ingresar Aut&oacutematas</h3>
                         </div>
                     </div>
                     <div class="sub-descripcion">
@@ -99,7 +98,7 @@
                     <div class="automata-submit">
                         <div class="transicion">
                             <!-- Muestra el popup para ingresar transiciones -->
-                            <button type="button" onclick="addT()">Añadir una transicion de estado</button>
+                            <button type="button" onclick="addT()">Añadir transiciones de estado</button>
                         </div>
                         <!-- <div class="sub-transicion" id="sub-transicion"></div> -->
                     </div>
@@ -125,7 +124,7 @@
                     <div class="automata-submit">
                         <div class="transicion">
                             <!-- Muestra el popup para ingresar transiciones -->
-                            <button type="button" onclick="addT()">Añadir una transicion de estado</button>
+                            <button type="button" onclick="addT()">Añadir transiciones de estado</button>
                         </div>
                         <!-- <div class="sub-transicion" id="sub-transicion"></div> -->
                     </div>
@@ -134,14 +133,50 @@
         </div>
         <div class="operacion">
             <div class="descripcion">
-                <div class="tittle"></div>
-                <div class="sub-tittle"></div>
-                <div class="sub-descripcion"></div>
+                <div class="descripcion-wrapper op">
+                    <div class="tittle">
+                        <img src="icons/operations.svg" alt="operation-img" width="50" height="50">
+                        <div class="sub-tittle">
+                            <h2>Paso 3</h2>
+                            <h3>Mostrar operaciones</h3>
+                        </div>
+                    </div>
+                    <div class="sub-descripcion">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.</p>
+                    </div>
+                </div>
             </div>
             <div class="mostar-operacion">
-                <div class="operacion1"></div>
-                <div class="operacion2"></div>
-                <div class="operacion3"></div>
+                <!-- Operacion 1: simplificar automata -->
+                <div class="operacion-menu" id="op1">
+                    <a class="link-menu" href="#op1">
+                        <i class="op-icon"></i>
+                        <span>Obtener el aut&oacutematas AFD simplificado</span>
+                    </a>
+                    <div class="operacion-submenu">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    </div>
+                </div>
+                <!-- Operacion 2: Automata a partir de operaciones  -->
+                <div class="operacion-menu" id="op2">
+                    <a class="link-menu" href="#op2">
+                        <i class="op-icon"></i>
+                        <span>Obtener el aut&oacutemata a partir de operaciones</span>
+                    </a>
+                    <div class="operacion-submenu">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    </div>
+                </div>
+                <!-- Operacion 3: Simplificar los del punto anterior -->
+                <div class="operacion-menu" id="op3">
+                    <a class="link-menu" href="#op3">
+                        <i class="op-icon"></i>
+                        <span>Pasar los aut&oacutematas a AFD y simplificarlos</span>
+                    </a>
+                    <div class="operacion-submenu">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    </div>
+                </div>
             </div>
         </div>
     </body>

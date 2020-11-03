@@ -2,7 +2,7 @@
     background-color: var(--alfabeto-bg);
     color: var(--white-fg);
     display: flex;
-    height: 40%;
+    height: 33%;
 }
 
 .tamano input {
