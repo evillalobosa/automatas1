@@ -20,13 +20,14 @@
                 <h1>Aut&oacutematas</h1>
             </div>
             <div class="github">
-                <img src="icons/github-dark.png" alt="Github logo icon">
+                <img src="icons/github.svg" alt="Github logo icon">
                 <a href="https://github.com/yowls/automatas1">GitHub</a>
             </div>
         </div>
         <div class="tips">
                 <h3>Algunos tips para un buen uso:</h3>
         </div>
+        <!-- Paso 1: Alfabeto -->
         <div class="alfabeto">
             <div class="descripcion">
                 <div class="descripcion-wrapper">
@@ -66,6 +67,7 @@
                 </div>
             </div>
         </div>
+        <!-- Paso 2: automata -->
         <div class="automata">
             <div class="descripcion">
                 <div class="descripcion-wrapper">
@@ -85,25 +87,25 @@
                 <div class="sub-formulario">
                     <div class="automata-header">
                         <img src="icons/robotico.svg" alt="automata-img" width="40" height="40">
-                        <input type="text" name="" value="Automata1" placeholder="Enter a name" required>
+                        <input type="text" id="automataN1" name="" value="Automata1" placeholder="Enter a name" required>
                     </div>
                     <div class="automata-body">
                         <!-- Ingresar cantidad de estados del automata -->
                         <div class="estados">
-                            <label for="insertarInicioArista">Cantidad de estados:</label>
-                            <input type="number" id="insertarInicioArista" name="automata" autocomplete="off" value="1" min="1" required>
+                            <label for="estadosA1">Cantidad de estados:</label>
+                            <input type="number" id="estadosA1" name="automata1" autocomplete="off" value="1" min="1" required>
                         </div>
                         <!-- Sea AFD o ANFD -->
                         <div class="afd-or-anfd">
-                            <label for="dirigido">AFD</label>
-                            <input type="checkbox" id="insertarDirigido" name="automata">
-                            <label for="dirigido">AFND</label>
+                            <label for="afdA1">AFD</label>
+                            <input type="checkbox" id="afdA1" name="automata1">
+                            <label for="afdA1">AFND</label>
                         </div>
                     </div>
                     <div class="automata-submit">
-                        <button type="button" data-popup-target="#popup-a1">Añadir transiciones de estado</button>
+                        <button type="button" data-popup-target="#popup-a1" onclick="afdAnfd('automata1')">Añadir transiciones de estado</button>
                         <!-- Muestra el popup para ingresar transiciones -->
-                        <div class="popup" id="popup-a1">
+                        <div class="popup popupa1" id="popup-a1">
                             <div class="popup-header">
                                 <h1>Insertar una transicion de estado</h1>
                                 <button data-close-button class="close-button">&times;</button>
@@ -119,8 +121,8 @@
                                             <div class="input-automata">Automata: Automata1</div>
                                             <!-- Ingreso transiciones -->
                                             <div class="input-transiciones">
-                                                <div class="sub-transicion" id="sub-transicion"></div>
-                                                <button type="button" onclick="addT()">Añadir</button>
+                                                <div id="transicion-input1"></div>
+                                                <div class="sub-transicion" id="sub-transicion1"></div>
                                             </div>
                                         </div>
                                         <div class="subformulario-tabla" id="subformulario-tabla"></div>
@@ -130,7 +132,7 @@
                                 </div>
                                 <!-- Submit -->
                                 <div class="transicion-submit">
-                                    <button type="button" onclick="setVertice()">Finalizar</button>
+                                    <button type="button" data-close-button onclick="setTransiciones()">Finalizar</button>
                                 </div>
                             </div>
                         </div>
@@ -139,25 +141,25 @@
                 <div class="sub-formulario">
                     <div class="automata-header">
                         <img src="icons/robotico.svg" alt="automata-img" width="40" height="40">
-                        <input type="text" name="" value="Automata2" placeholder="Enter a name" required>
+                        <input type="text" id="automataN2" name="" value="Automata2" placeholder="Enter a name" required>
                     </div>
                     <div class="automata-body">
                         <!-- Ingresar cantidad de estados del automata -->
                         <div class="estados">
-                            <label for="insertarInicioArista">Cantidad de estados:</label>
-                            <input type="number" id="insertarInicioArista" name="automata" autocomplete="off" value="1" min="1" required>
+                            <label for="estadosA2">Cantidad de estados:</label>
+                            <input type="number" id="estadosA2" name="automata2" autocomplete="off" value="1" min="1" required>
                         </div>
                         <!-- Sea AFD o ANFD -->
                         <div class="afd-or-anfd">
-                            <label for="dirigido">AFD</label>
-                            <input type="checkbox" id="insertarDirigido" name="automata">
-                            <label for="dirigido">AFND</label>
+                            <label for="afdA2">AFD</label>
+                            <input type="checkbox" id="afdA2" name="automata2">
+                            <label for="afdA2">AFND</label>
                         </div>
                     </div>
                     <div class="automata-submit">
-                        <button type="button" data-popup-target="#popup-a2">Añadir transiciones de estado</button>
+                        <button type="button" data-popup-target="#popup-a2" onclick="afdAnfd('automata2')">Añadir transiciones de estado</button>
                         <!-- Muestra el popup para ingresar transiciones -->
-                        <div class="popup" id="popup-a2">
+                        <div class="popup popupa2" id="popup-a2">
                             <div class="popup-header">
                                 <h1>Insertar una transicion de estado</h1>
                                 <button data-close-button class="close-button">&times;</button>
@@ -170,11 +172,11 @@
                                     <div class="transicion-subformulario">
                                         <div class="subformulario-input">
                                             <!-- Nombre del automata -->
-                                            <div class="input-automata">Automata: Automata1</div>
+                                            <div class="input-automata">Automata: Automata2</div>
                                             <!-- Ingreso transiciones -->
                                             <div class="input-transiciones">
-                                                <div class="sub-transicion" id="sub-transicion"></div>
-                                                <button type="button" onclick="addT()">Añadir una transicion de estado</button>
+                                                <div id="transicion-input2"></div>
+                                                <div class="sub-transicion" id="sub-transicion2"></div>
                                             </div>
                                         </div>
                                         <div class="subformulario-tabla" id="subformulario-tabla"></div>
@@ -184,7 +186,7 @@
                                 </div>
                                 <!-- Submit -->
                                 <div class="transicion-submit">
-                                    <button type="button" onclick="setVertice()">Finalizar</button>
+                                    <button type="button" data-close-button onclick="setTransiciones()">Finalizar</button>
                                 </div>
                             </div>
                         </div>
@@ -192,6 +194,7 @@
                 </div>
             </div>
         </div>
+        <!-- Paso 3: operacion -->
         <div class="operacion">
             <div class="descripcion">
                 <div class="descripcion-wrapper op">
