@@ -16,4 +16,5 @@ Todo
 + Set fonts
 + Set buttons on hover= cursor: pointer
 + center afd/anfd text
++ transition acordeon menu when open
 -->
