@@ -61,13 +61,12 @@
                 <div class="tabla-alfabeto">
                     <table>
                         <caption>Nombre del alfabeto</caption>
-                        <tr><th scope="col">Nombre</th></tr>
                         <tbody id="alfabetoTabla"></tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <!-- Paso 2: automata -->
+        <!-- Paso 2: Automatas -->
         <div class="automata">
             <div class="descripcion">
                 <div class="descripcion-wrapper">
@@ -118,17 +117,24 @@
                                     <div class="transicion-subformulario">
                                         <div class="subformulario-input">
                                             <!-- Nombre del automata -->
-                                            <div class="input-automata">Automata: Automata1</div>
-                                            <!-- Ingreso transiciones -->
-                                            <div class="input-transiciones">
-                                                <div id="transicion-input1"></div>
-                                                <div class="sub-transicion" id="sub-transicion1"></div>
-                                            </div>
+                                            <div class="input-automata">Automata: <div id="name-automata1"></div></div>
+                                            <!-- Ingreso transiciones (boton) -->
+                                            <div id="transicion-input1"></div>
                                         </div>
-                                        <div class="subformulario-tabla" id="subformulario-tabla"></div>
+                                        <!-- Formulario de ingreso dinamico de transiciones -->
+                                        <div class="sub-transicion" id="sub-transicion1"></div>
                                     </div>
                                     <!-- Tabla de estados y alfabeto del automata de ayuda -->
-                                    <div class="automata-tabla" id="automata1-tabla"></div>
+                                    <div class="automata-tabla">
+                                        <table>
+                                            <caption>Informaci&oacuten</caption>
+                                            <thead>
+                                                <td>Alfabeto</td>
+                                                <td>Estados</td>
+                                            </thead>
+                                            <tbody id="automata1-tabla"></tbody>
+                                        </table>
+                                    </div>
                                 </div>
                                 <!-- Submit -->
                                 <div class="transicion-submit">
@@ -172,17 +178,24 @@
                                     <div class="transicion-subformulario">
                                         <div class="subformulario-input">
                                             <!-- Nombre del automata -->
-                                            <div class="input-automata">Automata: Automata2</div>
-                                            <!-- Ingreso transiciones -->
-                                            <div class="input-transiciones">
+                                            <div class="input-automata">Automata: <div id="name-automata2"></div></div>
+                                            <!-- Ingreso transiciones (boton) -->
                                                 <div id="transicion-input2"></div>
-                                                <div class="sub-transicion" id="sub-transicion2"></div>
-                                            </div>
                                         </div>
-                                        <div class="subformulario-tabla" id="subformulario-tabla"></div>
+                                        <!-- Formulario de ingreso dinamico de transiciones -->
+                                        <div class="sub-transicion" id="sub-transicion2"></div>
                                     </div>
                                     <!-- Tabla de estados y alfabeto del automata de ayuda -->
-                                    <div class="automata-tabla" id="automata1-tabla"></div>
+                                    <div class="automata-tabla">
+                                        <table>
+                                            <caption>Informaci&oacuten</caption>
+                                            <thead>
+                                                <td>Alfabeto</td>
+                                                <td>Estados</td>
+                                            </thead>
+                                            <tbody id="automata2-tabla"></tbody>
+                                        </table>
+                                    </div>
                                 </div>
                                 <!-- Submit -->
                                 <div class="transicion-submit">
@@ -194,14 +207,55 @@
                 </div>
             </div>
         </div>
-        <!-- Paso 3: operacion -->
+        <!-- Paso 3: Etiquetas de Inicio y Termino -->
+        <div class="etiquetas">
+            <div class="descripcion">
+                <div class="descripcion-wrapper">
+                    <div class="tittle">
+                        <img src="icons/automatas.svg" alt="automata-img" width="50" height="50">
+                        <div class="sub-tittle">
+                            <h2>Paso 3</h2>
+                            <h3>Ingresar Etiquetas</h3>
+                        </div>
+                    </div>
+                    <div class="sub-descripcion">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="formulario">
+                <div class="sub-formulario">
+                    <div class="etiqueta-termino">
+                        <span>Cantidad estados finales:</span>
+                        <input type="number" name="" value="">
+                    </div>
+                    <div class="etiqueta-submit">
+                        <label for="">¿Inicial es final?</label>
+                        <input type="checkbox" name="" value="">
+                        <button type="button" name="button">Enter</button>
+                    </div>
+                </div>
+                <div class="sub-formulario">
+                    <div class="etiqueta-termino">
+                        <span>Cantidad estados finales:</span>
+                        <input type="number" name="" value="">
+                    </div>
+                    <div class="etiqueta-submit">
+                        <label for="">¿Inicial es final?</label>
+                        <input type="checkbox" name="" value="">
+                        <button type="button" name="button">Enter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Paso 4: Operaciones -->
         <div class="operacion">
             <div class="descripcion">
                 <div class="descripcion-wrapper op">
                     <div class="tittle">
                         <img src="icons/operations.svg" alt="operation-img" width="50" height="50">
                         <div class="sub-tittle">
-                            <h2>Paso 3</h2>
+                            <h2>Paso 4</h2>
                             <h3>Mostrar operaciones</h3>
                         </div>
                     </div>

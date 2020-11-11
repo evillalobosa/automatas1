@@ -5,6 +5,7 @@
     height: 40%;
     font-family: "Robot Condensed", sans-serif;
     font-weight: 300;
+    overflow: auto;
 }
 .sub-formulario-header {
     font-size: 18px;
@@ -30,4 +31,25 @@
 .tabla-alfabeto table, .tabla-alfabeto caption {
     text-align: center;
     min-width: 160px;
+}
+
+table {
+    width: 100%;
+    background: var(--white-fg);
+    color: var(--black-fg);
+    font-weight: bold;
+}
+caption {
+    background: var(--black-fg);
+    color: var(--white-fg);
+    padding: 10px 5px;
+    text-transform: uppercase;
+}
+td, th {
+    padding: 8px;
+    border-bottom: 1px solid white;
+}
+tr:nth-child(even){
+    background: var(--black-fg);
+    color: var(--white-fg);
 }

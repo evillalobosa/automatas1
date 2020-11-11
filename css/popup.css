@@ -1,13 +1,12 @@
 .popup {
     position: fixed;
-    /* top: 50%; */
-    /* left: 50%; */
     border-radius: 10px;
     padding: 20px 30px;
     transform: translate(-30%, -70%) scale(0);
     transition: 200ms ease-in-out;
     background-color: var(--header-bg);
     color: var(--white-fg);
+    z-index: 99;
     width: 800px;
     /* max-width: 100%; */
 }
@@ -65,4 +64,19 @@
     background: var(--header-bg);
     border: none;
     border-bottom: 2px solid var(--white-fg);
+}
+.input-automata {
+    display: flex;
+    font-weight: bold;
+}
+#transicion-input1, #transicion-input2 {
+    text-align: left;
+}
+#name-automata1, #name-automata2 {
+    padding-left: 10px;
+}
+#sub-transicion1, #sub-transicion2 {
+    width: 380px;
+    height: 245px;
+    overflow: auto;
 }

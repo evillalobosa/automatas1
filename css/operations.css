@@ -53,6 +53,7 @@
     color: var(--white-fg);
     height: 0;
     opacity: 0;
+    overflow: hidden;
 }
 
 .operacion-menu:target .operacion-submenu {

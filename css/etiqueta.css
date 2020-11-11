@@ -1,0 +1,9 @@
+.etiquetas {
+    background-color: var(--etiquetas-bg);
+    color: var(--black-fg);
+    display: flex;
+    height: 40%;
+    font-family: "Robot Condensed", sans-serif;
+    font-weight: 300;
+    overflow: auto;
+}
