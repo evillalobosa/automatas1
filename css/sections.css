@@ -14,11 +14,13 @@
 .tittle img {
     margin-right: 20px;
 }
-.sub-tittle, .sub-descripcion {
+.sub-tittle {
     text-align: center;
+    font-size: 1.2rem;
 }
 .sub-descripcion {
-    font-size: 12px;
+    font-size: .8em;
+    margin-left: 60px;
     padding: 20px 30px;
 }
 

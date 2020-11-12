@@ -2,9 +2,10 @@
 @import "colors.css";
 @import "header.css";
 @import "sections.css";
+@import "tooltip.css";
+@import "popup.css";
 @import "alfabeto.css";
 @import "automata.css";
-@import "popup.css";
 @import "etiqueta.css";
 @import "operations.css";
 
