@@ -45,7 +45,7 @@
     color: var(--white-fg);
     position: relative;
 }
-.paso1::after {
+.paso1::before {
     border-bottom: 5.1vw solid var(--alfabeto-bg);
 }
 .paso2 {
@@ -53,7 +53,7 @@
     color: var(--white-fg);
     position: relative;
 }
-.paso2::after {
+.paso2::before {
     border-bottom: 5.1vw solid var(--automata-bg);
 }
 .paso3 {
@@ -61,7 +61,7 @@
     color: var(--black-fg);
     position: relative;
 }
-.paso3::after {
+.paso3::before {
     border-bottom: 5.1vw solid var(--etiquetas-bg);
 }
 .paso4 {
@@ -69,10 +69,10 @@
     color: var(--black-fg);
     position: relative;
 }
-.paso4::after {
+.paso4::before {
     border-bottom: 5.1vw solid var(--operacion-bg);
 }
-.paso1::after, .paso2::after, .paso3::after, .paso4::after {
+.paso1::before, .paso2::before, .paso3::before, .paso4::before {
     content: "";
     display: block;
     position: absolute;
