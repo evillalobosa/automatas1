@@ -2,14 +2,14 @@
     background-color: var(--operacion-bg);
     color: var(--black-fg);
     display: flex;
-    height: 70%;
+    height: var(--operaciones-height);
     font-family: "Robot Condensed", sans-serif;
     font-weight: 300;
 }
 .mostar-operacion {
     width: 60%;
     height: 85%;
-    transform: translate(10%, 15%);
+    transform: translate(10%, 20%);
 }
 
 .op {

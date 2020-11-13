@@ -2,7 +2,7 @@
     background-color: var(--alfabeto-bg);
     color: var(--white-fg);
     display: flex;
-    height: 40%;
+    height: var(--alfabeto-height);
     font-family: "Robot Condensed", sans-serif;
     font-weight: 300;
     overflow: auto;
@@ -13,7 +13,7 @@
 }
 
 .tamano {
-    margin: 20px 0px;
+    margin: 30px 0px;
 }
 .tamano input {
     background: var(--white-fg);
@@ -24,9 +24,14 @@
     text-align: center;
     border-radius: 5px;
 }
-
+.sub-formulario-header {
+    margin-top: 15%;
+}
 .tabla-alfabeto {
-    height: 100%;
+    margin-top: 25px;
+}
+.tabla-alfabeto {
+    height: 90%;
 }
 .tabla-alfabeto table, .tabla-alfabeto caption {
     text-align: center;

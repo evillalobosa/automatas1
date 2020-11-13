@@ -2,11 +2,12 @@
     background-color: var(--automata-bg);
     color: var(--white-fg);
     display: flex;
-    height: 50%;
+    height: var(--automatas-height);
     font-family: "Robot Condensed", sans-serif;
     font-weight: 300;
 }
 .automata-header {
+    margin-top: 10%;
     height: 80px;
     width: 100%;
     display: flex;

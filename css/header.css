@@ -1,34 +1,110 @@
 .header {
     background: var(--header-bg);
-    height: 15%;
+    color: var(--white-fg);
+    height: 5vw;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--white-fg);
-    font-size: 3vh;
-    font-family: Rubik, sans-serif;
+    position: fixed;
+    z-index: 3;
 }
-.logo, .github {
+.logo {
+    margin-left: 20px;
     display: flex;
     align-items: center;
 }
 .logo img {
-    width: 10vh;
-    height: 10vh;
-}
-.github {
-    background: var(--white-fg);
-    padding: 5px;
+    width: 4vw;
+    height: 4vw;
     margin-right: 10px;
-    border-radius: 10px;
 }
-.github a {
-    text-decoration: none;
+
+
+.header-right-side, .github,
+.pasos, .paso1, .paso2, .paso3, .paso4 {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.pasos a {
+    padding: 0 10px;
+}
+
+
+.paso1 img, .paso2 img, .paso3 img, .paso4 img {
+    padding-right: 10px;
+}
+.paso1 span, .paso2 span, .paso3 span, .paso4 span {
+    margin-right: 20px;
+}
+
+.paso1 {
+    background: var(--alfabeto-bg);
+    color: var(--white-fg);
+    position: relative;
+}
+.paso1::after {
+    border-bottom: 5.1vw solid var(--alfabeto-bg);
+}
+.paso2 {
+    background: var(--automata-bg);
+    color: var(--white-fg);
+    position: relative;
+}
+.paso2::after {
+    border-bottom: 5.1vw solid var(--automata-bg);
+}
+.paso3 {
+    background: var(--etiquetas-bg);
     color: var(--black-fg);
-    padding: 0px 10px;
+    position: relative;
+}
+.paso3::after {
+    border-bottom: 5.1vw solid var(--etiquetas-bg);
+}
+.paso4 {
+    background: var(--operacion-bg);
+    color: var(--black-fg);
+    position: relative;
+}
+.paso4::after {
+    border-bottom: 5.1vw solid var(--operacion-bg);
+}
+.paso1::after, .paso2::after, .paso3::after, .paso4::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -1px;
+    left: -1.9vw;
+    border-left: 2vw solid transparent;
+}
+
+.github {
+    background: var(--yellow);
+    width: 7vw;
 }
 .github img {
-    width: 5vh;
-    height: 5vh;
+    width: 3vw;
+    padding-left: 2vw;
+}
+
+
+.tips {
+    background-color: var(--yellow);
+    color: var(--black-fg);
+    display: flex;
+    height: var(--introduction-height);
+    width: 100%;
+    font-family: Poppins, sans-serif;
+    font-size: 0.8em;
+    padding-top: 8%;
+}
+.tips h3 {
+    width: 35vw;
+    padding-left: 20px;
+}
+.tips p {
+    margin-right: 30px;
 }

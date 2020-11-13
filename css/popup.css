@@ -75,8 +75,12 @@
 #name-automata1, #name-automata2 {
     padding-left: 10px;
 }
-#sub-transicion1, #sub-transicion2 {
+#sub-transicion1, #sub-transicion2 , .automata-tabla{
     width: 380px;
     height: 245px;
     overflow: auto;
+    padding: 10px;
+}
+.automata-tabla {
+    margin-top: 10px;
 }

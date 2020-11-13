@@ -2,8 +2,24 @@
     background-color: var(--etiquetas-bg);
     color: var(--black-fg);
     display: flex;
-    height: 40%;
+    height: var(--etiquetas-height);
     font-family: "Robot Condensed", sans-serif;
     font-weight: 300;
     overflow: auto;
+}
+
+.etiqueta-automata {
+    margin-top: 25%;
+}
+.etiqueta-termino input {
+    background: var(--white-fg);
+    color: var(--black-fg);
+    text-align: center;
+    border: none;
+    height: 30px;
+    width: 50px;
+    border-radius: 5px;
+}
+.etiqueta-termino, .etiqueta-bool, .etiqueta-submit{
+    margin-top: 20px;
 }

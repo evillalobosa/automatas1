@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>Automatas</title>
         <!-- Favicon -->
-        <link rel="icon" type="image/png" href="img/robotico.svg">
+        <link rel="icon" type="image/png" href="icons/logo.svg">
         <!-- Fonts: Poppins, Robot Condensed, Rubik -->
          <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,300&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300&family=Rubik:wght@600;800;900&display=swap" rel="stylesheet">
         <!-- Imports -->
@@ -16,16 +16,36 @@
     <body>
         <div class="header">
             <div class="logo">
-                <img src="img/robotico.svg" alt="Logo">
+                <img src="icons/logo.svg" alt="Logo">
                 <h1>Aut&oacutematas</h1>
             </div>
-            <div class="github">
-                <img src="icons/github.svg" alt="Github logo icon">
-                <a href="https://github.com/yowls/automatas1">GitHub</a>
+            <div class="header-right-side">
+                <div class="pasos">
+                    <a href="#" class="paso1">
+                        <img src="icons/alfabeto.svg" alt="alfabeto-img" width="25" height="25">
+                        <span>Paso 1</span>
+                    </a>
+                    <a href="#" class="paso2">
+                        <img src="icons/automatas.svg" alt="automta-img" width="25" height="25">
+                        <span>Paso 2</span>
+                    </a>
+                    <a href="#" class="paso3">
+                        <img src="icons/tag.svg" alt="etiqueta-img" width="25" height="25">
+                        <span>Paso 3</span>
+                    </a>
+                    <a href="#" class="paso4">
+                        <img src="icons/operations.svg" alt="operaciones-img" width="25" height="25">
+                        <span>Paso 4</span>
+                    </a>
+                </div>
+                <div class="github">
+                    <a href="https://github.com/yowls/automatas1"><img src="icons/github.svg" alt="Github logo icon"></a>
+                </div>
             </div>
         </div>
         <div class="tips">
-                <h3>Algunos tips para un buen uso:</h3>
+                <h3>Algunos tips para<br> un buen uso:</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
         <!-- Paso 1: Alfabeto -->
         <div class="alfabeto">
@@ -124,7 +144,7 @@
             <div class="formulario">
                 <div class="sub-formulario">
                     <div class="automata-header">
-                        <img src="icons/robotico.svg" alt="automata-img" width="40" height="40">
+                        <img src="icons/robotico.svg" alt="automata-img" width="50" height="50">
                         <input type="text" id="automataN1" name="" value="Automata1" placeholder="Enter a name" required>
                     </div>
                     <div class="automata-body">
@@ -185,7 +205,7 @@
                 </div>
                 <div class="sub-formulario">
                     <div class="automata-header">
-                        <img src="icons/robotico.svg" alt="automata-img" width="40" height="40">
+                        <img src="icons/robotico.svg" alt="automata-img" width="50" height="50">
                         <input type="text" id="automataN2" name="" value="Automata2" placeholder="Enter a name" required>
                     </div>
                     <div class="automata-body">
@@ -283,24 +303,30 @@
             </div>
             <div class="formulario">
                 <div class="sub-formulario">
+                    <h2 class="etiqueta-automata">Automata 1</h2>
                     <div class="etiqueta-termino">
                         <span>Cantidad estados finales:</span>
-                        <input type="number" name="" value="">
+                        <input type="number" name="etiqueta" autocomplete="off" value="1" min="1" required>
                     </div>
-                    <div class="etiqueta-submit">
+                    <div class="etiqueta-bool">
                         <label for="">¿Inicial es final?</label>
                         <input type="checkbox" name="" value="">
+                    </div>
+                    <div class="etiqueta-submit">
                         <button type="button" name="button">Enter</button>
                     </div>
                 </div>
                 <div class="sub-formulario">
+                    <h2 class="etiqueta-automata">Automata 2</h2>
                     <div class="etiqueta-termino">
                         <span>Cantidad estados finales:</span>
-                        <input type="number" name="" value="">
+                        <input type="number" name="etiqueta" autocomplete="off" value="1" min="1" required>
+                    </div>
+                    <div class="etiqueta-bool">
+                        <label for="">¿Inicial es final?</label>
+                        <input type="checkbox" name="etiqueta">
                     </div>
                     <div class="etiqueta-submit">
-                        <label for="">¿Inicial es final?</label>
-                        <input type="checkbox" name="" value="">
                         <button type="button" name="button">Enter</button>
                     </div>
                 </div>

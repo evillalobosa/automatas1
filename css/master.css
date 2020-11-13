@@ -22,17 +22,11 @@ body {
     text-decoration: none;
 }
 
-.tips {
-    background-color: var(--header-bg);
-    color: white;
-    display: flex;
-    align-items: center;
-    height: 45px;
-    width: 100%;
-    font-family: Poppins, sans-serif;
-    font-size: 0.8em;
-}
-.tips h3 {
-    width: 318px;
-    padding-left: 10px;
+/*Sizes*/
+:root {
+  --introduction-height:	13vw;
+  --alfabeto-height:		30vw;
+  --automatas-height:		35vw;
+  --etiquetas-height:		35vw;
+  --operaciones-height:		45vw;
 }

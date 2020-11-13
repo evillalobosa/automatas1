@@ -69,32 +69,30 @@ var addTransicionANFD = function(transicion) {
 
 function afdAnfd(automata) {
     if (automata == 'automata1') {
-        // Imprime el nombre
+        // Imprime el nombre del automata
         var printNombreAutomata = document.getElementById("name-automata1");
         printNombreAutomata.innerHTML = document.getElementById("automataN1").value;
         // Imprime la tabla de estados y Alfabeto para el automata 1
         var estadosAutomata1 = document.getElementById("estadosA1").value;
-        // var printTablaAutomata = document.getElementById("subformulario-tabla");
-        // var mayor = 0;
-        // if (estadosAutomata1 > alfabeto.length) {
-        //     mayor = estadosAutomata1;
-        // }
-        // else {
-        //     mayor = alfabeto.length;
-        // }
-        // for (var i = 0; i < mayor; ) {
-        //     var untr = document.createElement("tr");
-        //     for (var k = 0; k < 2; k++) {
-        //         var untd1 = document.createElement("td");
-        //         untd1.textContent = alfabeto[i];
-        //         var untd2 = document.createElement("td");
-        //         untd2.textContent = "q"+estados;
-        //         untr.appendChild(untd1);
-        //         untr.appendChild(untd2);
-        //         i++;
-        //     }
-        //     printTablaAutomata.appendChild(untr);
-        // }
+        var printTablaAutomata = document.getElementById("automata1-tabla");
+        printTablaAutomata.innerHTML = "";
+        var mayor = 0;
+        if (estadosAutomata1 > alfabeto.length) {
+            mayor = estadosAutomata1;
+        }
+        else {
+            mayor = alfabeto.length;
+        }
+        for (var i = 0; i < mayor; i++) {
+            var untr = document.createElement("tr");
+            var untd1 = document.createElement("td");
+            untd1.textContent = alfabeto[i];
+            var untd2 = document.createElement("td");
+            untd2.textContent = "q"+estadosAutomata1;
+            untr.appendChild(untd1);
+            untr.appendChild(untd2);
+            printTablaAutomata.appendChild(untr);
+        }
 
         // Procede a crear las casillas para las transiciones
         var boolAFD1 = document.getElementById("afdA1").checked;
@@ -117,9 +115,32 @@ function afdAnfd(automata) {
         }
     }
     else {
+        // Imprime el nombre del automata
         var printNombreAutomata = document.getElementById("name-automata2");
         printNombreAutomata.innerHTML = document.getElementById("automataN2").value;
+        // Imprime la tabla de estados y Alfabeto para el automata 1
+        var estadosAutomata1 = document.getElementById("estadosA2").value;
+        var printTablaAutomata = document.getElementById("automata2-tabla");
+        printTablaAutomata.innerHTML = "";
+        var mayor = 0;
+        if (estadosAutomata1 > alfabeto.length) {
+            mayor = estadosAutomata1;
+        }
+        else {
+            mayor = alfabeto.length;
+        }
+        for (var i = 0; i < mayor; i++) {
+            var untr = document.createElement("tr");
+            var untd1 = document.createElement("td");
+            untd1.textContent = alfabeto[i];
+            var untd2 = document.createElement("td");
+            untd2.textContent = "q"+estadosAutomata1;
+            untr.appendChild(untd1);
+            untr.appendChild(untd2);
+            printTablaAutomata.appendChild(untr);
+        }
 
+        // Procede a crear las casillas para las transiciones
         var boolAFD2 = document.getElementById("afdA2").checked;
         // Determina si el automata 2 es afd sino es anfd (false=afd; true=anfd)
         if (boolAFD2 == false) {
