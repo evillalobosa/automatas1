@@ -3,17 +3,18 @@
     color: var(--white-fg);
     display: flex;
     height: var(--alfabeto-height);
-    font-family: "Robot Condensed", sans-serif;
-    font-weight: 300;
     overflow: auto;
 }
 .sub-formulario-header {
-    font-size: 18px;
-    font-family: "Rubik", sans-serif;
+    font-size: 1.35em;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
 }
 
 .tamano {
     margin: 30px 0px;
+    font-weight: normal;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 .tamano input {
     background: var(--white-fg);
@@ -42,12 +43,13 @@ table {
     width: 100%;
     background: var(--white-fg);
     color: var(--black-fg);
-    font-weight: bold;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 caption {
     background: var(--black-fg);
     color: var(--white-fg);
     padding: 10px 5px;
+    font-weight: bold;
     text-transform: uppercase;
 }
 td, th {

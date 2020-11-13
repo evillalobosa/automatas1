@@ -9,6 +9,10 @@
     position: fixed;
     z-index: 3;
 }
+.header h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
 .logo {
     margin-left: 20px;
     display: flex;
@@ -38,6 +42,8 @@
 }
 .paso1 span, .paso2 span, .paso3 span, .paso4 span {
     margin-right: 20px;
+    font-family: 'Cabin', sans-serif;
+    font-weight: bold;
 }
 
 .paso1 {
@@ -97,14 +103,18 @@
     display: flex;
     height: var(--introduction-height);
     width: 100%;
-    font-family: Poppins, sans-serif;
-    font-size: 0.8em;
     padding-top: 8%;
 }
 .tips h3 {
-    width: 35vw;
-    padding-left: 20px;
+    width: 33vw;
+    padding: 0px 3vw 0px 7vw;
+    font-family: 'Anton', sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
 }
 .tips p {
-    margin-right: 30px;
+    margin-right: 6vw;
+    font-size: 1em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: normal;
 }

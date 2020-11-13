@@ -30,11 +30,16 @@
     font-size: 18px;
 }
 .link-menu span {
-    margin-left: 10px;
+    margin-left: 1.4vw;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1em;
 }
 .op-icon {
     position: relative;
     width: 10px;
+    margin-left: 1vw;
+
 }
 .op-icon::before, .op-icon::after {
     content: "";
@@ -54,6 +59,9 @@
     height: 0;
     opacity: 0;
     overflow: hidden;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: normal;
+    font-size: 1em;
 }
 
 .operacion-menu:target .operacion-submenu {

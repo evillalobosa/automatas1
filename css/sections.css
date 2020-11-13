@@ -12,16 +12,19 @@
     justify-content: center;
 }
 .tittle img {
+    margin-top: 10px;
     margin-right: 20px;
 }
 .sub-tittle {
     text-align: center;
+    font-family: 'Anton', sans-serif;
     font-size: 1.2rem;
 }
 .sub-descripcion {
-    font-size: .8em;
-    margin-left: 60px;
+    margin-left: 6vw;
     padding: 20px 30px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: .8em;
 }
 
 .formulario {
@@ -35,7 +38,10 @@
     background: var(--white-fg);
     color: var(--black-fg);
     padding: 7px 14px;
-    border: none;
     border-radius: 4px;
+    border: none;
     cursor: pointer;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: normal;
+    font-size: 1em;
 }

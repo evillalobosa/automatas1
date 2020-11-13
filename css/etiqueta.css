@@ -9,7 +9,10 @@
 }
 
 .etiqueta-automata {
-    margin-top: 25%;
+    margin-top: 20%;
+    font-size: 1.5em;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
 }
 .etiqueta-termino input {
     background: var(--white-fg);
@@ -19,6 +22,12 @@
     height: 30px;
     width: 50px;
     border-radius: 5px;
+}
+
+.etiqueta-termino, .etiqueta-bool {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: normal;
+    font-size: 1em;
 }
 .etiqueta-termino, .etiqueta-bool, .etiqueta-submit{
     margin-top: 20px;

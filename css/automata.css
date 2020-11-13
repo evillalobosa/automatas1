@@ -7,7 +7,7 @@
     font-weight: 300;
 }
 .automata-header {
-    margin-top: 10%;
+    margin-top: 5%;
     height: 80px;
     width: 100%;
     display: flex;
@@ -20,11 +20,16 @@
     border: none;
     margin-left: 10px;
     width: 50%;
-    font-size: 30px;
-    font-family: "Rubik", sans-serif;
+    font-size: 2em;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
 }
 .automata-body{
+    margin-top: 20px;
     text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: normal;
+    font-size: 1em;
 }
 .estados input {
     background: var(--white-fg);
@@ -36,7 +41,10 @@
     border-radius: 5px;
 }
 .afd-or-anfd {
-    padding: 10px 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 10vw;
 }
 .afd-or-anfd input[type="checkbox"] {
     -webkit-appearance: none;
