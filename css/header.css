@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    z-index: 3;
+    z-index: 10;
 }
 .header h1 {
     font-family: 'Open Sans', sans-serif;

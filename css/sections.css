@@ -1,5 +1,7 @@
 .descripcion {
     width: 30%;
+    position: relative;
+    z-index: 9;
 }
 .descripcion-wrapper {
     height: 60%;

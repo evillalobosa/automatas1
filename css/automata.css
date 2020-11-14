@@ -38,6 +38,7 @@
     border: none;
     height: 30px;
     width: 50px;
+    margin-left: 10px;
     border-radius: 5px;
 }
 .afd-or-anfd {
@@ -80,4 +81,7 @@
 .automata-submit {
     transform: translate(0%, 100%);
     text-align: center;
+}
+.sub-formulario {
+    z-index: -1;
 }
