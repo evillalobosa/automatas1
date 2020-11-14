@@ -81,7 +81,6 @@
 .automata-submit {
     transform: translate(0%, 100%);
     text-align: center;
-}
-.sub-formulario {
-    z-index: -1;
+    position: relative;
+    z-index: 1;
 }

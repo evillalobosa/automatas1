@@ -11,11 +11,11 @@
     /* max-width: 100%; */
 }
 .popupa1.active {
-    transform: translate(0%, -80%) scale(1);
+    transform: translate(0%, -70%) scale(1);
     pointer-events: all;
 }
 .popupa2.active {
-    transform: translate(-54%, -80%) scale(1);
+    transform: translate(-54%, -70%) scale(1);
     pointer-events: all;
 }
 

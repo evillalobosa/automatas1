@@ -35,7 +35,8 @@ function setAlfabeto() {
            }
            alfabeto.push(aux);
        }
-       console.log("Se ha ingresado el alfabeto\n\t" + alfabeto);
+       console.log("Se ha ingresado el alfabeto\n");
+       console.log(alfabeto);
    }
    else{
        console.error("Debe ingresar un número mayor a 1");
@@ -43,14 +44,11 @@ function setAlfabeto() {
    }
 
     // Lo imprime la tabla por pantalla
-    for (var i = 0; i<alfabeto.length; ) {
+    for (var i = 0; i<alfabeto.length; i++) {
         var untr = document.createElement("tr");
-        for (var k = 0; k<3; k++) {
-            var untd = document.createElement("td");
-            untd.textContent = alfabeto[i];
-            untr.appendChild(untd);
-            i++;
-        }
+        var untd = document.createElement("td");
+        untd.textContent = alfabeto[i];
+        untr.appendChild(untd);
         printAlfabeto.appendChild(untr);
     }
 }
@@ -102,26 +100,23 @@ function IngresarEstados(automata) {
 
     if(automata == "automata1"){
         T1BOOL = document.getElementById("afdA1").checked;
-        console.log("Se ha ingreasdo los estados y tipo de automata\nEstados: ");
-        console.log(estado1);
         if (T1BOOL == false) {
-            console.log("Tipo AFD")
+            console.log("[Automata 1]\n\tTipo: AFD\n\tSe han ingresado: "+estado1.length+" estados")
         }
         else {
-            console.log("Tipo ANFD")
+            console.log("[Automata 1]\n\tTipo: ANFD\n\tSe han ingresado: "+estado1.length+" estados")
         }
+        console.log(estado1);
     }
     else {
         T2BOOL = document.getElementById("afdA2").checked;
-        console.log("Se ha ingreasdo los estados y tipo de automata\nEstados:");
-        console.log(estado2);
         if (T2BOOL == false) {
-            console.log("Tipo AFD")
+            console.log("[Automata 2]\n\tTipo: AFD\n\tSe han ingresado: "+estado2.length+" estados")
         }
         else {
-            console.log("Tipo ANFD")
+            console.log("[Automata 2]\n\tTipo: ANFD\n\tSe han ingresado: "+estado2.length+" estados")
         }
-
+        console.log(estado2);
     }
 }
 

@@ -37,15 +37,15 @@
 }
 .op-icon {
     position: relative;
-    width: 10px;
+    width: 13px;
     margin-left: 1vw;
 
 }
 .op-icon::before, .op-icon::after {
     content: "";
     position: absolute;
-    width: 10px;
-    height: 4px;
+    width: 11px;
+    height: 5px;
     background-color: var(--white-fg);
     top: 9px;
 }

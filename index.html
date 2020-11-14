@@ -107,7 +107,8 @@
                 </div>
                 <div class="tabla-alfabeto">
                     <table>
-                        <caption>Nombre del alfabeto</caption>
+                        <caption>Tabla</caption>
+                        <th scope="col">Alfabeto</th>
                         <tbody id="alfabetoTabla"></tbody>
                     </table>
                 </div>
@@ -194,10 +195,10 @@
                                     <div class="automata-tabla">
                                         <table>
                                             <caption>Informaci&oacuten</caption>
-                                            <thead>
-                                                <td>Alfabeto</td>
-                                                <td>Estados</td>
-                                            </thead>
+                                            <tr>
+                                                <th scope="col">Alfabeto</th>
+                                                <th scope="col">Estados</th>
+                                            </tr>
                                             <tbody id="automata1-tabla"></tbody>
                                         </table>
                                     </div>
@@ -255,10 +256,10 @@
                                     <div class="automata-tabla">
                                         <table>
                                             <caption>Informaci&oacuten</caption>
-                                            <thead>
-                                                <td>Alfabeto</td>
-                                                <td>Estados</td>
-                                            </thead>
+                                            <tr>
+                                                <th scope="col">Alfabeto</th>
+                                                <th scope="col">Estados</th>
+                                            </tr>
                                             <tbody id="automata2-tabla"></tbody>
                                         </table>
                                     </div>
@@ -378,7 +379,7 @@
                 <!-- Operacion 1: simplificar automata -->
                 <div class="operacion-menu" id="op1">
                     <a class="link-menu" href="#op1">
-                        <i class="op-icon"></i>
+                        <em class="op-icon"></em>
                         <span>Obtener el aut&oacutematas AFD simplificado</span>
                     </a>
                     <div class="operacion-submenu">
@@ -388,7 +389,7 @@
                 <!-- Operacion 2: Automata a partir de operaciones  -->
                 <div class="operacion-menu" id="op2">
                     <a class="link-menu" href="#op2">
-                        <i class="op-icon"></i>
+                        <em class="op-icon"></em>
                         <span>Obtener el aut&oacutemata a partir de operaciones</span>
                     </a>
                     <div class="operacion-submenu">
@@ -398,7 +399,7 @@
                 <!-- Operacion 3: Simplificar los del punto anterior -->
                 <div class="operacion-menu" id="op3">
                     <a class="link-menu" href="#op3">
-                        <i class="op-icon"></i>
+                        <em class="op-icon"></em>
                         <span>Pasar los aut&oacutematas a AFD y simplificarlos</span>
                     </a>
                     <div class="operacion-submenu">
