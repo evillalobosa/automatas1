@@ -12,6 +12,7 @@
         <script defer src="js/transition.js"></script>
         <script defer src="js/popup.js"></script>
         <script defer src="js/simplificar.js"></script>
+        <scriptdefer src ="js/AFNDtoAFD.js"></script>
     </head>
     <body>
         <div class="header">
@@ -25,7 +26,8 @@
             </div>
         </div>
         <div class="tips">
-                <h3>Algunos tips para un buen uso:</h3>
+                <h3>Introducción</h3>
+                <p>Bienvenido<br>Esta aplicación web está destinada al análisis de autómatas, si bien se espera que como usuario ya tenga cierto conocimiento del tema, se ha especificado cada paso a seguir para el correcto ingreso de información. Por favor lea todo atentamente para evitar inconvenientes en el análisis, muchas gracias.</p>
         </div>
         <div class="alfabeto">
             <div class="descripcion">
@@ -38,7 +40,7 @@
                         </div>
                     </div>
                     <div class="sub-descripcion">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua laborum.</p>
+                        <p>Para comenzar vamos a determinar el alfabeto compartido por ambos autómatas, para ello seleccione una cantidad en el espacio indicado, el alfabeto será creado desde a hasta z, un numero superior a esta generará un nuevo elemento combinado aa, ab y hasta zz.</p>
                     </div>
                 </div>
             </div>
@@ -77,7 +79,7 @@
                         </div>
                     </div>
                     <div class="sub-descripcion">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>En este paso vamos a seleccionar la cantidad elementos que contendrá cada uno de los autómatas, en el caso del autómata 1 serán q0, q1, q2,…,qn, para el autómata 2 en cambio r0, r1, r2,…,rn.<br>Luego seleccionaremos el tipo de autómata, si es un Autómata Finito Determinístico (AFD) o un Autómata Finito no Determinístico (AFND).<br>Por ultimo y luego de crear los estados podremos ingresar las transiciones entre ellos.</p>
                     </div>
                 </div>
             </div>
@@ -110,7 +112,7 @@
                             </div>
                             <div class="popup-body">
                                 <!-- Descripcion afd/anfd -->
-                                <div class="transicion-descripcion">Una transicion para un automata finito determinista es: ..<br>Mientras que para un automata no finito determinista .. </div>
+                                <div class="transicion-descripcion">Una transición de un AFD debe de cumplir con que las salidas de cada estado deben contener a todos los elementos del alfabeto, no más y no menos.<br>Ejemplo: si hay 3 estados y 2 elementos en el alfabeto, el total de transiciones debe ser de 6 exactamente.<br>Para un AFND si bien no existen tales condiciones y de hecho se busca que desde un único estado y con el mismo elemento del alfabeto el autómata pueda llegar a varios estados distintos, si ha de cumplirse tanto en este como en los AFD que no existan los elementos aislados, aquellos a los que desde el inicio del autómata no se pueda llegar.<br>Si el listado no cumple con las especificaciones al momento de finalizar eliminara el proceso hasta ese punto, tenga esto en cuenta antes de presionar el botón ya señalado.</div>
                                 <!-- inputs y tabla (area central)-->
                                 <div class="transicion-formulario">
                                     <div class="transicion-subformulario">
@@ -164,7 +166,7 @@
                             </div>
                             <div class="popup-body">
                                 <!-- Descripcion afd/anfd -->
-                                <div class="transicion-descripcion">Una transicion para un automata finito determinista es: ..<br>Mientras que para un automata no finito determinista .. </div>
+                                <div class="transicion-descripcion">Una transición de un AFD debe de cumplir con que las salidas de cada estado deben contener a todos los elementos del alfabeto, no más y no menos.<br>Ejemplo: si hay 3 estados y 2 elementos en el alfabeto, el total de transiciones debe ser de 6 exactamente.<br>Para un AFND si bien no existen tales condiciones y de hecho se busca que desde un único estado y con el mismo elemento del alfabeto el autómata pueda llegar a varios estados distintos, si ha de cumplirse tanto en este como en los AFD que no existan los elementos aislados, aquellos a los que desde el inicio del autómata no se pueda llegar.<br>Si el listado no cumple con las especificaciones al momento de finalizar eliminara el proceso hasta ese punto, tenga esto en cuenta antes de presionar el botón ya señalado.</div>
                                 <!-- inputs y tabla (area central)-->
                                 <div class="transicion-formulario">
                                     <div class="transicion-subformulario">
@@ -203,7 +205,7 @@
                         </div>
                     </div>
                     <div class="sub-descripcion">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.</p>
+                        <p>Luego de que la información esta debidamente guardada, podemos ingresar y ver las distintas operaciones.</p>
                     </div>
                 </div>
             </div>
@@ -212,30 +214,30 @@
                 <div class="operacion-menu" id="op1">
                     <a class="link-menu" href="#op1">
                         <i class="op-icon"></i>
-                        <span>Obtener el aut&oacutematas AFD simplificado</span>
+                        <span>Obtener los aut&oacutematas AFD simplificados.</span>
                     </a>
                     <div class="operacion-submenu">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        Si alguno de los autómatas es AFND, antes de simplificarlos se convertirán en AFD. 
                     </div>
                 </div>
                 <!-- Operacion 2: Automata a partir de operaciones  -->
                 <div class="operacion-menu" id="op2">
                     <a class="link-menu" href="#op2">
                         <i class="op-icon"></i>
-                        <span>Obtener el aut&oacutemata a partir de operaciones</span>
+                        <span>Obtener aut&oacutematas a partir de operaciones.</span>
                     </a>
                     <div class="operacion-submenu">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        A continuación, se detallan posibles autómatas resultantes de los dos ingresados: Complemento, Unión, Concatenación e Intersección.
                     </div>
                 </div>
                 <!-- Operacion 3: Simplificar los del punto anterior -->
                 <div class="operacion-menu" id="op3">
                     <a class="link-menu" href="#op3">
                         <i class="op-icon"></i>
-                        <span>Pasar los aut&oacutematas a AFD y simplificarlos</span>
+                        <span>Pasar los aut&oacutematas anteriores a AFD y simplificarlos.</span>
                     </a>
                     <div class="operacion-submenu">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        Estos son los autómatas convertidos y simplificados.
                     </div>
                 </div>
             </div>
