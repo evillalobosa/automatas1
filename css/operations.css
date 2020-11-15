@@ -59,6 +59,7 @@
     height: 0;
     opacity: 0;
     overflow: hidden;
+    display: flex;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: normal;
     font-size: 1em;
@@ -71,4 +72,15 @@
 }
 .operacion-menu:target .op-icon::after {
     transform: rotate(0);
+}
+
+.calculo {
+    display: grid;
+    width: 150px;
+}
+#union, #complemento, #interseccion, #concatenacion {
+    background-color: var(--white-fg);
+    border: 5px solid var(--automata-bg);
+    padding: 15px 0px;
+    cursor: pointer;
 }

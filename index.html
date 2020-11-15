@@ -182,8 +182,6 @@
                                 <button data-close-button class="close-button">&times;</button>
                             </div>
                             <div class="popup-body">
-                                <!-- Descripcion afd/anfd -->
-                                <div class="transicion-descripcion">Una transicion para un automata finito determinista es: ..<br>Mientras que para un automata no finito determinista .. </div>
                                 <!-- inputs y tabla (area central)-->
                                 <div class="transicion-formulario">
                                     <div class="transicion-subformulario">
@@ -243,8 +241,6 @@
                                 <button data-close-button class="close-button">&times;</button>
                             </div>
                             <div class="popup-body">
-                                <!-- Descripcion afd/anfd -->
-                                <div class="transicion-descripcion">Una transicion para un automata finito determinista es: ..<br>Mientras que para un automata no finito determinista .. </div>
                                 <!-- inputs y tabla (area central)-->
                                 <div class="transicion-formulario">
                                     <div class="transicion-subformulario">
@@ -377,12 +373,12 @@
             <div class="mostar-operacion">
                 <!-- Operacion 1: simplificar automata -->
                 <div class="operacion-menu" id="op1">
-                    <a class="link-menu" href="#op1">
+                    <a class="link-menu" href="#op1" onclick="simplificar()">
                         <em class="op-icon"></em>
                         <span>Obtener el aut&oacutematas AFD simplificado</span>
                     </a>
                     <div class="operacion-submenu">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        <div class="simplificar"></div>
                     </div>
                 </div>
                 <!-- Operacion 2: Automata a partir de operaciones  -->
@@ -392,7 +388,13 @@
                         <span>Obtener el aut&oacutemata a partir de operaciones</span>
                     </a>
                     <div class="operacion-submenu">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        <div class="calculo">
+                            <button type="button" id="union" onclick="union()">Unión</button>
+                            <button type="button" id="complemento" onclick="complemento()">Complemento</button>
+                            <button type="button" id="interseccion" onclick="Concatenacion()">Intersección</button>
+                            <button type="button" id="concatenacion" onclick="Interseccion()">Concatenación</button>
+                        </div>
+                        <div id="mostrar-calculo"></div>
                     </div>
                 </div>
                 <!-- Operacion 3: Simplificar los del punto anterior -->
@@ -402,7 +404,7 @@
                         <span>Pasar los aut&oacutematas a AFD y simplificarlos</span>
                     </a>
                     <div class="operacion-submenu">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        <div class="simplificar2"></div>
                     </div>
                 </div>
             </div>

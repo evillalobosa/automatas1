@@ -281,15 +281,15 @@ function setTransiciones(automata){
 
       for(i=0;i<transicion2.length;i++){
         for(j=0;j<estado2.length;j++){
-          if(transicion2[i][0] == estado2[j][0]){
+          if(transicion2[i][0]==estado2[j][0]){
             aux1++;
           }
-          if(transicion2[i][2] == estado2[j][0]){
+          if(transicion2[i][2]==estado2[j][0]){
             aux2++;
           }
         }
         for(k=0;k<alfabeto.length;k++){
-          if(transicion2[i][1] == alfabeto[k]){
+          if(transicion2[i][1]==alfabeto[k]){
             aux3++;
           }
         }
@@ -318,12 +318,15 @@ function setTransiciones(automata){
            console.log(transicion2);
        }
    }
+   // Limpia el area de ingreso para prevenir problemas
+   document.getElementById("sub-transicion1").innerHTML = '';
+   document.getElementById("sub-transicion2").innerHTML = '';
 }
 
  // Transiciones AFD
 var addTransicionAFD = function (estados,id) {
     // Si es AFD el numero de transiciones esta limitado al numero de estados
-    for(var i=0; i<estados*alfabeto.length; i++){
+    for(var i=0; i<estados*(alfabeto.length-1); i++){
         addTransicionANFD(id);
     }
 };
@@ -368,7 +371,9 @@ var addTransicionANFD = function(transicion) {
 // Funcion cuando se oprime 'Añadir transiciones de estado'
 function afdAnfd(automata) {
     contadorBoton = 0;
-
+    // Limpia el area de ingreso para prevenir problemas
+   document.getElementById("sub-transicion1").innerHTML = '';
+   document.getElementById("sub-transicion2").innerHTML = '';
     if (automata == 'automata1') {
         IngresarEstados("automata1")
         // Imprime el nombre del automata
@@ -400,15 +405,12 @@ function afdAnfd(automata) {
         var boolAFD1 = document.getElementById("afdA1").checked;
         // Determina si el automata 1 es afd sino es anfd (false=afd; true=anfd)
         if (boolAFD1 == false) {
-            // Limpia el area de ingreso previo en caso de cambio
+            // Limpia el boton de ingreso en caso de cambio
             document.getElementById("transicion-input1").innerHTML = '';
-            document.getElementById("sub-transicion1").innerHTML = '';
             // Crea tantas transiciones como estados tenga el automata y los deja en el div con id:sub-transicion1
             addTransicionAFD(estadosAutomata1,'sub-transicion1');
         }
         else {
-            // Limpia el area de ingreso previo en caso de cambio
-            document.getElementById("sub-transicion1").innerHTML = '';
             // Crea el boton para Añadir
             anadir = ['<button type=button onclick=addTransicionANFD("sub-transicion1")>Añadir</button>']
             // Lo ingresa en la  pagina
@@ -448,16 +450,13 @@ function afdAnfd(automata) {
         var boolAFD2 = document.getElementById("afdA2").checked;
         // Determina si el automata 2 es afd sino es anfd (false=afd; true=anfd)
         if (boolAFD2 == false) {
-            // Limpia el area de ingreso previo en caso de cambio
+            // Limpia el boton de ingreso en caso de cambio
             document.getElementById("transicion-input2").innerHTML = '';
-            document.getElementById("sub-transicion2").innerHTML = '';
             // Crea tantas transiciones como estados tenga el automata y los deja en el div con id:sub-transicion2
             var estadosAutomata2 = document.getElementById("estadosA2").value;
             addTransicionAFD(estadosAutomata2,'sub-transicion2');
         }
         else {
-            // Limpia el area de ingreso previo en caso de cambio
-            document.getElementById("sub-transicion2").innerHTML = '';
             // Crea el boton para Añadir
             anadir = ['<button type=button onclick=addTransicionANFD("sub-transicion2")>Añadir</button>']
             // Lo ingresa en la  pagina
