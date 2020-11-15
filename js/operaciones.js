@@ -436,47 +436,16 @@ function complemento (E) {
 }
 
 /** 2.b.2 Unión */
-function union (Estados1, Estados2, Alfabeto1, Alfabeto2, Transicion1, Transicion2) {
+function union (Estados1, Estados2, Alfabeto, Transicion1, Transicion2) {
     //Nuevo Automata
     var neoEstados = [['qE', 'i']], neoAlfabeto = ['E'], neoTransicion = [];
     
     let aux = [], i;
 
     /* Dejamos el Alfabeto en el nuevo Automata */
-    // Antes de todo, identifiquemos si los Alfabetos son iguales.
-    var cont_1 = 0;
-    for (let i = 0; i < Alfabeto1.length; i++) {
-        for (let k = 0; k < Alfabeto2.length; k++) {
-            if (Alfabeto1[i] === Alfabeto2[k]) {
-                cont_1++;
-            }
-        }
-    }
-    if (cont_1 == Alfabeto1.length) {
-        aux = Alfabeto1.slice();
-        for (let i = 1; aux.length != 0; i++) {
-            neoAlfabeto[i] = aux.shift();
-        }
-    }
-    // Si no son iguales, procedemos a juntar ambos Alfabetos.
-    else {
-        //Primero con el Automata N°1.
-        aux = Alfabeto1.slice();
-        for (i = 1; aux.length != 0; i++) {
-            neoAlfabeto[i] = aux.shift();
-        }
-        //Luego, con el Automata N°2.
-        aux = Alfabeto2.slice();
-        for (i = 0; i < neoAlfabeto.length; i++) {
-            for (let k = 0; k < aux.length; k++) {
-                if (neoAlfabeto[i] == aux[k]) {
-                    aux.splice(k, 1);
-                }
-            }
-        }
-        for (i = neoAlfabeto.length; aux.length != 0; i++) {
-            neoAlfabeto[i] = aux.shift();
-        }
+    aux = Alfabeto.slice();
+    for (let i = 1; aux.length != 0; i++) {
+        neoAlfabeto[i] = aux.shift();
     }
     
     /* Dejamos los Estados en el nuevo Automata */
@@ -613,33 +582,33 @@ function Concatenacion (Automata_1, Automata_2) {
 
 /** 2.b.4 Intersección */ 
 function Interseccion (Automata_1, Automata_2) {
-    var Estados_1 = [], Alfabeto_1 = [], Transiciones_1 = [];
-    var Estados_2 = [], Alfabeto_2 = [], Transiciones_2 = [];
-    var Estados_3 = [], Alfabeto_3 = [], Transiciones_3 = [];
-        // Guardamos los datos en variables separaas.
-        Estados_1 = Automata_1[0];
-        Alfabeto_1 = Automata_1[1];
-        Transiciones_1 = Automata_1[2]
-        Estados_2 = Automata_2[0];
-        Alfabeto_2 = Automata_2[1];
-        Transiciones_2 = Automata_2[2];
+    var Estados_1 = [], Transiciones_1 = [], Alfabeto = [];
+    var Estados_2 = [], Transiciones_2 = [];
 
-        // Para obtener la intersección procedemos a calcular por separado.
-        // Obtenemos los complementos de ambos Estados.
-        Estados_1 = complemento(Estados_1);
-        console.log(Estados_1);
+    var Estados_3 = [];
+    
+    // Guardamos los datos en variables separadas.
+    Estados_1 = Automata_1[0];
+    Transiciones_1 = Automata_1[2]
+    Estados_2 = Automata_2[0];
+    Transiciones_2 = Automata_2[2];
+    Alfabeto = Automata_1[1];
 
-        Estados_2 = complemento(Estados_2);
-        console.log(Estados_2);
+    // Para obtener la intersección debemos calcular lo siguiente:
+    // (L1 ∩ L2) = (L1^c ∪ L2^c)^c
+    // Obtenemos los complementos de ambos Estados.
+    Estados_1 = complemento(Estados_1);
+    console.log(Estados_1);
 
-        // Luego, calculamos la Unión.
-        Automata_3 = union (Estados_1, Estados_2, Alfabeto_1, Alfabeto_2, Transiciones_1, Transiciones_2);
-        Estados_3 = Automata_3[0];
-        Alfabeto_3 = Automata_3[1];
-        Transiciones_3 = Automata_3[2];
+    Estados_2 = complemento(Estados_2);
+    console.log(Estados_2);
 
-        // Para finaliza, obtenemos el complemento del Automata Final.
-        Estados_3 = complemento(Estados_3);
-        
-        return Automata_3;
+    // Luego, calculamos la Unión.
+    Automata_3 = union (Estados_1, Estados_2, Alfabeto, Transiciones_1, Transiciones_2);
+    Estados_3 = Automata_3[0];
+    
+    // Para finaliza, obtenemos el complemento del Automata Final.
+    Estados_3 = complemento(Estados_3);
+
+    return Automata_3;
 }
