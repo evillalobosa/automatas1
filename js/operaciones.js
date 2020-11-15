@@ -7,7 +7,6 @@ var T1BOOL;
 var T2BOOL;
 var contadorBoton = 0;
 
-
 function setAlfabeto() {
     var size = document.getElementById('size-alfabeto').value;
     var printAlfabeto = document.getElementById('alfabetoTabla');
@@ -60,7 +59,7 @@ function IngresarEstados(automata) {
     if(automata == "automata1"){
         var NumeroIngresado = document.getElementById("estadosA1").value;
         if(NumeroIngresado >= 1){
-            estados1= [];
+            estado1= [];
             validacion = 1;
         }
         else {
@@ -81,7 +80,7 @@ function IngresarEstados(automata) {
         // Sino el automata ingresado es 2
         var NumeroIngresado = document.getElementById("estadosA2").value;
         if(NumeroIngresado >= 1){
-            estados2= [];
+            estado2= [];
             validacion = 1;
         }
         else {
@@ -149,9 +148,12 @@ function IngresarEtiquetas(automata){
                    estado1[i][1]="f";
                }
            }
+           console.log("Se ha ingresado correctamente la etiqueta para el automata 1");
+           console.log(estado1);
        }
    }
    else {
+    //    Si es automata 2
        var NumeroIngresado = document.getElementById("etiquetaA2").value;
        var BoolIngresado = document.getElementById("etiquetaB2").value;
 
@@ -177,6 +179,8 @@ function IngresarEtiquetas(automata){
                    estado2[i][1]="f";
                }
            }
+           console.log("Se ha ingresado correctamente la etiqueta para el automata 2");
+           console.log(estado2);
        }
    }
 }
@@ -205,8 +209,8 @@ function setTransiciones(automata){
         if(T1BOOL == false){
             if(contadorBoton != ((estado1.length)*(alfabeto.length - 1))){
                validacion==0;
-               console.error("cantidad de transiciones con concuerda que el tipo de automata");
-               alert("cantidad de transiciones con concuerda que el tipo de automata");
+               console.error("Cantidad de transiciones con concuerda que el tipo de automata");
+               alert("Cantidad de transiciones con concuerda que el tipo de automata");
            }
            for(i=1;i<alfabeto.length;i++){
                for(j=0;j<transicion1.length;j++){
@@ -214,21 +218,48 @@ function setTransiciones(automata){
                        cont++;
                    }
                }
-               if(cont != estados1.length){
+               if(cont != estado1.length){
                    validacion=0;
-                   console.error("cantidad de transiciones con concuerda que el tipo de automata");
-                   alert("cantidad de transiciones con concuerda que el tipo de automata");
+                   console.error("Cantidad de transiciones con concuerda que el tipo de automata");
+                   alert("Cantidad de transiciones con concuerda que el tipo de automata");
                }
                cont=0;
            }
-       }
+        }
+        var aux1=0;
+        var aux2=0;
+        var aux3=0;
+
+      for(i=0;i<transicion1.length;i++){
+        for(j=0;j<estado1.length;j++){
+          if(transicion1[i][0]==estado1[j][0]){
+            aux1++;
+          }
+          if(transicion1[i][2]==estado1[j][0]){
+            aux2++;
+          }
+        }
+        for(k=0;k<alfabeto.length;k++){
+          if(transicion1[i][1]==alfabeto[k]){
+            aux3++;
+          }
+        }
+        if((aux1==0) || (aux2==0) || (aux3==0)){
+          validacion=0;
+          console.error("Elemento no presente en datos previamente guardados");
+          alert("Elemento no presente en datos previamente guardados");
+        }
+        aux1=0;
+        aux2=0;
+        aux3=0;
+      }
    }
    else{
        if(T2BOOL == false){
            if(contadorBoton != ((estado2.length)*(alfabeto.length - 1))){
                validacion==0;
-               console.error("cantidad de transiciones con concuerda que el tipo de automata");
-               alert("cantidad de transiciones con concuerda que el tipo de automata");
+               console.error("Cantidad de transiciones con concuerda que el tipo de automata");
+               alert("Cantidad de transiciones con concuerda que el tipo de automata");
            }
            for(i=1;i<alfabeto.length;i++){
                for(j=0;j<transicion2.length;j++){
@@ -236,14 +267,41 @@ function setTransiciones(automata){
                        cont++;
                    }
                }
-               if(cont != estados2.length){
+               if(cont != estado2.length){
                    validacion=0;
-                   console.error("cantidad de transiciones con concuerda que el tipo de automata");
-                   alert("cantidad de transiciones con concuerda que el tipo de automata");
+                   console.error("Cantidad de transiciones con concuerda que el tipo de automata");
+                   alert("Cantidad de transiciones con concuerda que el tipo de automata");
                }
                cont=0;
            }
        }
+        var aux1=0;
+        var aux2=0;
+        var aux3=0;
+
+      for(i=0;i<transicion2.length;i++){
+        for(j=0;j<estado2.length;j++){
+          if(transicion2[i][0] == estado2[j][0]){
+            aux1++;
+          }
+          if(transicion2[i][2] == estado2[j][0]){
+            aux2++;
+          }
+        }
+        for(k=0;k<alfabeto.length;k++){
+          if(transicion2[i][1] == alfabeto[k]){
+            aux3++;
+          }
+        }
+        if((aux1==0) || (aux2==0) || (aux3==0)){
+          validacion=0;
+          console.error("Elemento no presente en datos previamente guardados");
+          alert("Elemento no presente en datos previamente guardados");
+        }
+        aux1=0;
+        aux2=0;
+        aux3=0;
+      }
    }
    if(validacion == 0){
        if(automata == "automata1"){
@@ -253,10 +311,10 @@ function setTransiciones(automata){
        }
    }else{
        if(automata == "automata1"){
-           console.log("Se han ingreasdo transiciones al automta 1: ");
+           console.log("Se han ingreasdo transiciones al automata 1: ");
            console.log(transicion1);
        }else{
-           console.log("Se han ingreasdo transiciones al automta 2");
+           console.log("Se han ingreasdo transiciones al automata 2: ");
            console.log(transicion2);
        }
    }
@@ -307,6 +365,7 @@ var addTransicionANFD = function(transicion) {
     div.appendChild(termino);
 };
 
+// Funcion cuando se oprime 'Añadir transiciones de estado'
 function afdAnfd(automata) {
     contadorBoton = 0;
 
@@ -331,7 +390,7 @@ function afdAnfd(automata) {
             var untd1 = document.createElement("td");
             untd1.textContent = alfabeto[i];
             var untd2 = document.createElement("td");
-            untd2.textContent = "q"+estadosAutomata1;
+            untd2.textContent = estado1[i];
             untr.appendChild(untd1);
             untr.appendChild(untd2);
             printTablaAutomata.appendChild(untr);
@@ -359,7 +418,7 @@ function afdAnfd(automata) {
     }
     else {
         // Si es automata 2
-        IngresarEstados("automata2")
+        IngresarEstados("automata2");
         // Imprime el nombre del automata
         var printNombreAutomata = document.getElementById("name-automata2");
         printNombreAutomata.innerHTML = document.getElementById("automataN2").value;
@@ -379,7 +438,7 @@ function afdAnfd(automata) {
             var untd1 = document.createElement("td");
             untd1.textContent = alfabeto[i];
             var untd2 = document.createElement("td");
-            untd2.textContent = "q"+estadosAutomata1;
+            untd2.textContent = estado2[i];
             untr.appendChild(untd1);
             untr.appendChild(untd2);
             printTablaAutomata.appendChild(untr);
