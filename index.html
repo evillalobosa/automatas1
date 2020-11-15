@@ -52,7 +52,7 @@
         </div>
         <div class="tips">
                 <h3>Introducci&oacuten<br>a la p&aacutegina</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Esta aplicación web está destinada al análisis de autómatas, si bien se espera que como usuario ya tenga cierto conocimiento del tema, se ha especificado cada paso a seguir para el correcto ingreso de información. Por favor lea todo atentamente para evitar inconvenientes en el análisis</p>
         </div>
         <!-- Paso 1: Alfabeto -->
         <div id="alfabeto" class="alfabeto">
@@ -68,22 +68,21 @@
                     <div class="sub-descripcion">
                         <ul>
                             <li>
-                                <span class="tooltip">
-                                    Ingrese texto aqui
+                                <span class="tooltip">Ingresar el alfabeto
                                     <img src="icons/help-white.svg" alt="automata-img" width="15px" height="15px">
-                                    <span class="tooltip-box">adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                                    <span class="tooltip-box">El alfabeto será compartido para ambos autómatas, para ello seleccione una cantidad en el espacio indicado, el alfabeto será creado desde a hasta z, un numero superior a esta generará un nuevo elemento combinado aa, ab y hasta zz</span>
                                 </span>
                             </li>
                             <li>
-                                <span class="tooltip">Ingrese texto aqui
+                                <span class="tooltip">Primer elemento es vacio
                                     <img src="icons/help-white.svg" alt="automata-img" width="15px" height="15px">
-                                    <span class="tooltip-box">sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                                    <span class="tooltip-box">La primera posición del Alfabeto es "E", el cual representa las transiciones vacias.</span>
                                 </span>
                             </li>
                             <li>
-                                <span class="tooltip">Ingrese texto aqui
+                                <span class="tooltip">Tamaño m&aacuteximo del alfabeto
                                     <img src="icons/help-white.svg" alt="automata-img" width="15px" height="15px">
-                                    <span class="tooltip-box">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                                    <span class="tooltip-box">El numero máximo de elementos a ingresar del alfabeto es de 702, luego comenzará a adquirir caracteres erroneos.</span>
                                 </span>
                             </li>
                         </ul>
@@ -128,21 +127,27 @@
                     <div class="sub-descripcion">
                         <ul>
                             <li>
-                                <span class="tooltip">Ingrese texto aqui
+                                <span class="tooltip">Los estados del automata
                                     <img src="icons/help-white.svg" alt="automata-img" width="15px" height="15px">
-                                    <span class="tooltip-box">adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                                    <span class="tooltip-box">En el caso del autómata 1 serán q0, q1, q2,…,qn,<br>para el autómata 2 en cambio r0, r1, r2,…,rn.</span>
                                 </span>
                             </li>
                             <li>
-                                <span class="tooltip">Ingrese texto aqui
+                                <span class="tooltip">Selecciona AFD o ANFD
                                     <img src="icons/help-white.svg" alt="automata-img" width="15px" height="15px">
-                                    <span class="tooltip-box">sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                                    <span class="tooltip-box">Seleccione si el automata es AFD o ANFD<br>haciendo click en el boton.</span>
                                 </span>
                             </li>
                             <li>
-                                <span class="tooltip">Ingrese texto aqui
+                                <span class="tooltip">Ingresa las transiciones
                                     <img src="icons/help-white.svg" alt="automata-img" width="15px" height="15px">
-                                    <span class="tooltip-box">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                                    <span class="tooltip-box">Las transiciones para un AFD será igual al tamaño del alfabeto * la cantidad de estados<br>Para el caso de los ANFD se pueden agregar mas transiciones de forma ilimitada con el boton de añadir dentro del pop-up.</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="tooltip">Nombre del automata
+                                    <img src="icons/help-white.svg" alt="automata-img" width="15px" height="15px">
+                                    <span class="tooltip-box">El automata se puede renombrar haciendo doble click al lado de cada icono correspondiente.</span>
                                 </span>
                             </li>
                         </ul>
@@ -277,7 +282,7 @@
         <!-- Paso 3: Etiquetas de Inicio y Termino -->
         <div id="etiquetas" class="etiquetas">
             <div class="descripcion">
-                <div class="descripcion-wrapper">
+                <div class="descripcion-wrapper op">
                     <div class="tittle">
                         <img src="icons/tag.svg" alt="automata-img" width="50" height="50">
                         <div class="sub-tittle">
@@ -288,21 +293,15 @@
                     <div class="sub-descripcion">
                         <ul>
                             <li>
-                                <span class="tooltip">Ingrese texto aqui
+                                <span class="tooltip">Cantidad de estados finales
                                     <img src="icons/help-black.svg" alt="automata-img" width="15px" height="15px">
-                                    <span class="tooltip-box">adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                                    <span class="tooltip-box">El número ingresado determinará la cantidad de estados finales del autómata,no superando la cantidad de estados.</span>
                                 </span>
                             </li>
                             <li>
-                                <span class="tooltip">Ingrese texto aqui
+                                <span class="tooltip">¿Inicial es final?
                                     <img src="icons/help-black.svg" alt="automata-img" width="15px" height="15px">
-                                    <span class="tooltip-box">sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="tooltip">Ingrese texto aqui
-                                    <img src="icons/help-black.svg" alt="automata-img" width="15px" height="15px">
-                                    <span class="tooltip-box">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                                    <span class="tooltip-box">Existe la posibilidad de que el estado inicial también pueda ser considerado como un estado final, para esto está la casilla checkbox.</span>
                                 </span>
                             </li>
                         </ul>
@@ -354,21 +353,21 @@
                     <div class="sub-descripcion">
                         <ul>
                             <li>
-                                <span class="tooltip">Ingrese texto aqui
+                                <span class="tooltip">Simplificar automata
                                     <img src="icons/help-black.svg" alt="automata-img" width="15px" height="15px">
-                                    <span class="tooltip-box">adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                                    <span class="tooltip-box">Si alguno de los autómatas es AFND, antes de simplificarlos se convertirán en AFD.</span>
                                 </span>
                             </li>
                             <li>
-                                <span class="tooltip">Ingrese texto aqui
+                                <span class="tooltip">Automata a partir de operaciones
                                     <img src="icons/help-black.svg" alt="automata-img" width="15px" height="15px">
-                                    <span class="tooltip-box">sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                                    <span class="tooltip-box">Se detallan posibles autómatas resultantes de los dos ingresados: Complemento, Unión, Concatenación e Intersección.</span>
                                 </span>
                             </li>
                             <li>
-                                <span class="tooltip">Ingrese texto aqui
+                                <span class="tooltip">Simplificar los del punto anterior
                                     <img src="icons/help-black.svg" alt="automata-img" width="15px" height="15px">
-                                    <span class="tooltip-box">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                                    <span class="tooltip-box">Estos son los autómatas convertidos y simplificados.</span>
                                 </span>
                             </li>
                         </ul>

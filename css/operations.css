@@ -67,7 +67,7 @@
 .operacion-menu:target .operacion-submenu {
     height: auto;
     opacity: 1;
-    padding: 20px;
+    padding: 30px 20px 40px;
 }
 .operacion-menu:target .op-icon::after {
     transform: rotate(0);

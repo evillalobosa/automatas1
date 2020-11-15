@@ -107,14 +107,14 @@
 }
 .tips h3 {
     width: 33vw;
-    padding: 0px 3vw 0px 7vw;
+    padding: 0px 2vw 0px 7vw;
     font-family: 'Anton', sans-serif;
     font-weight: bold;
     font-size: 1.5em;
 }
 .tips p {
     margin-right: 6vw;
-    font-size: 1em;
+    font-size: 1.5em;
     font-family: 'Source Sans Pro', sans-serif;
-    font-weight: normal;
+    font-weight: lighter;
 }
