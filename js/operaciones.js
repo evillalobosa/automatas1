@@ -407,3 +407,239 @@ function afdAnfd(automata) {
         }
     }
 }
+
+/** PARTE 2.b */
+/** 2.b.1 Complemento */
+function complemento (E) {
+    for (let i = 0; i < E.length; i++) {
+        if (E[i][1] == 'f') {
+            E[i][1] = 'n';
+        }
+        else {
+            if (E[i][1] == 'n'){
+                E[i][1] = 'f'
+            }
+            else {
+                if (E[i][1] == 'i') {
+                    E[i][1] = 'if';
+                }
+                else {
+                    if (E[i][1] == 'if') {
+                        E[i][1] = 'i';
+                    }
+                }
+            }
+        }
+    }
+
+    return E;
+}
+
+/** 2.b.2 Unión */
+function union (Estados1, Estados2, Alfabeto1, Alfabeto2, Transicion1, Transicion2) {
+    //Nuevo Automata
+    var neoEstados = [['qE', 'i']], neoAlfabeto = ['E'], neoTransicion = [];
+    
+    let aux = [], i;
+
+    /* Dejamos el Alfabeto en el nuevo Automata */
+    // Antes de todo, identifiquemos si los Alfabetos son iguales.
+    var cont_1 = 0;
+    for (let i = 0; i < Alfabeto1.length; i++) {
+        for (let k = 0; k < Alfabeto2.length; k++) {
+            if (Alfabeto1[i] === Alfabeto2[k]) {
+                cont_1++;
+            }
+        }
+    }
+    if (cont_1 == Alfabeto1.length) {
+        aux = Alfabeto1.slice();
+        for (let i = 1; aux.length != 0; i++) {
+            neoAlfabeto[i] = aux.shift();
+        }
+    }
+    // Si no son iguales, procedemos a juntar ambos Alfabetos.
+    else {
+        //Primero con el Automata N°1.
+        aux = Alfabeto1.slice();
+        for (i = 1; aux.length != 0; i++) {
+            neoAlfabeto[i] = aux.shift();
+        }
+        //Luego, con el Automata N°2.
+        aux = Alfabeto2.slice();
+        for (i = 0; i < neoAlfabeto.length; i++) {
+            for (let k = 0; k < aux.length; k++) {
+                if (neoAlfabeto[i] == aux[k]) {
+                    aux.splice(k, 1);
+                }
+            }
+        }
+        for (i = neoAlfabeto.length; aux.length != 0; i++) {
+            neoAlfabeto[i] = aux.shift();
+        }
+    }
+    
+    /* Dejamos los Estados en el nuevo Automata */
+    //Además, cambiamos los Iniciales por No Finales.
+    //Primero con el Automata N°1.
+    for (i = 0; i < Estados1.length; i++) {
+        if (Estados1[i][1] === 'i') {
+            aux = Estados1[i];
+            aux[1] = 'n';
+            neoEstados.push(aux);
+        }
+        else {
+            if (Estados1[i][1] === 'if') {
+                aux = Estados1[i];
+                aux[1] = 'f';
+                neoEstados.push(aux);
+            }
+            else {
+                neoEstados.push(Estados1[i]);
+            }
+        }
+        
+    }
+    //Luego, con el Automata N°2.
+    for (i = 0; i < Estados2.length; i++) {
+        if (Estados2[i][1] === 'i') {
+            aux = Estados2[i];
+            aux[1] = 'n';
+            neoEstados.push(aux);
+        }
+        else {
+            if (Estados2[i][1] === 'if') {
+                aux = Estados2[i];
+                aux[1] = 'f';
+                neoEstados.push(aux);
+            }
+            else {
+                neoEstados.push(Estados2[i]);
+            }
+        }
+    }
+    
+    /* Dejamos las transiciones en el nuevo Automata */
+    //Primero con el Automata N°1.
+    aux = Transicion1.slice();
+    for (i = 0; aux.length != 0; i++) {
+        if (i === 0){
+            neoTransicion[i] = [neoEstados[0][0], 'E', Estados1[0][0]];
+            i++;
+            neoTransicion[i] = [neoEstados[0][0], 'E', Estados2[0][0]];
+        }
+        else 
+            neoTransicion[i] = aux.shift();
+    }
+    //Luego, con el Automata N°2. 
+    aux = Transicion2.slice();
+    for (i = neoTransicion.length; aux.length != 0; i++) {
+        neoTransicion[i] = aux.shift();
+    }
+
+    return [neoEstados, neoAlfabeto, neoTransicion];
+}
+
+/** 2.b.3 Concatenación */
+function Concatenacion (Automata_1, Automata_2) {
+    var neoEstados = [], neoAlfabeto = [], neoTransiciones = [];
+
+    // Guardamos los Estados y las Transiciones del Automata 1 en el nuevo Automata.
+    neoEstados = Automata_1[0].slice();
+    neoTransiciones = Automata_1[2].slice();
+
+    /** ---- */
+    // Guardamos el Alfabeto
+    neoAlfabeto = Automata_1[1].slice();
+
+    /** ---- */
+    //Procedemos a generar las nuevas Transiciones
+    let aux_estados = Automata_2[0].slice();
+    for (let i = 0; i < aux_estados.length; i++) {
+        for (let k = 0; k < neoAlfabeto.length; k++) {
+            for (let q = 0; q < neoEstados.length; q++) {
+                if (neoEstados[q][1] == 'f' || neoEstados[q][1] == 'if') {
+                    if (neoTransiciones[i][1] != neoAlfabeto[k]) {
+                        var aux_transiciones = [neoEstados[q][0], neoAlfabeto[k], aux_estados[i][0]];
+                        neoTransiciones.push(aux_transiciones);
+                    }
+                }
+            }
+        }
+    }
+    // Luego guardamos el resto de Transiciones.
+    for (let i = 0; i < Automata_2[2].length; i++) {
+        neoTransiciones.push(Automata_2[2][i]);
+    }
+    
+    /** ---- */
+    // Guardamos el resto de los Estados.
+    console.log(aux_estados[0][1])
+    for (let i = neoEstados.length; aux_estados != 0; i++) {
+        neoEstados[i] = aux_estados.shift();
+        if (neoEstados[i][1] == 'i') {
+            neoEstados[i][1] = 'n';
+        }
+    }
+    
+    // Si el Automata 2 posee un Estado Inicial Final dejamos todo como está, a excepción del Estado Inicial que pasa a ser No Final.
+    // En caso contrario, los Estados Finales del Automata 1 pasan a ser No Finales.
+    aux_estados = Automata_2[0].slice();
+    if (aux_estados[0][1] != 'if') {
+        for (let i = 0; i < neoEstados.length - aux_estados.length; i++) {
+            if (neoEstados[i][1] == 'f') {
+                neoEstados[i][1] = 'n';
+                
+            }
+            else {
+                if (neoEstados[i][1] == 'if') {
+                    neoEstados[i][1] = 'i';
+                }
+            }
+        }
+    }
+    else {
+        for (let i = 0; i < neoEstados.length; i++) {
+            if (aux_estados[0] == neoEstados[i]) {
+                neoEstados[i][1] = 'f';
+            }
+        }
+    }
+
+    /** ---- */
+    // Retornamos el nuevo Automata.
+    return [neoEstados, neoAlfabeto, neoTransiciones];
+}
+
+/** 2.b.4 Intersección */ 
+function Interseccion (Automata_1, Automata_2) {
+    var Estados_1 = [], Alfabeto_1 = [], Transiciones_1 = [];
+    var Estados_2 = [], Alfabeto_2 = [], Transiciones_2 = [];
+    var Estados_3 = [], Alfabeto_3 = [], Transiciones_3 = [];
+        // Guardamos los datos en variables separaas.
+        Estados_1 = Automata_1[0];
+        Alfabeto_1 = Automata_1[1];
+        Transiciones_1 = Automata_1[2]
+        Estados_2 = Automata_2[0];
+        Alfabeto_2 = Automata_2[1];
+        Transiciones_2 = Automata_2[2];
+
+        // Para obtener la intersección procedemos a calcular por separado.
+        // Obtenemos los complementos de ambos Estados.
+        Estados_1 = complemento(Estados_1);
+        console.log(Estados_1);
+
+        Estados_2 = complemento(Estados_2);
+        console.log(Estados_2);
+
+        // Luego, calculamos la Unión.
+        Automata_3 = union (Estados_1, Estados_2, Alfabeto_1, Alfabeto_2, Transiciones_1, Transiciones_2);
+        Estados_3 = Automata_3[0];
+        Alfabeto_3 = Automata_3[1];
+        Transiciones_3 = Automata_3[2];
+
+        // Para finaliza, obtenemos el complemento del Automata Final.
+        Estados_3 = complemento(Estados_3);
+        
+        return Automata_3;
+}
