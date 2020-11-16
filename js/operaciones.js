@@ -602,12 +602,12 @@ function Interseccion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2)
 
     // Luego, calculamos la Unión.
     Automata_neo = union (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2);
-    Estados_neo = Automata_3[0];
+    Estados_neo = Automata_neo;
     
     // Para finaliza, obtenemos el complemento del Automata Final.
     Estados_neo = complemento(Estados_3);
-    Alfabeto_neo = Automata_3[1];
-    Transicion_neo = Automata_3[2];
+    Alfabeto_neo = Automata_neo;
+    Transicion_neo = Automata_neo;
 
     return [Estados_neo, Alfabeto_neo, Transicion_neo];
 }
