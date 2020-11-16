@@ -466,12 +466,14 @@ function afdAnfd(automata) {
 /** PARTE 2.b */
 /** 2.b.1 Unión */
 function union (Estados1, Estados2, Alfabeto, Transicion1, Transicion2) {
+    // limpia la zona para mostrarlo
+    document.getElementById('mostrar-calculo').innerHTML = ''
+    
     //Nuevo Automata
     var neoEstados = [['qE', 'i']], neoAlfabeto = [], neoTransicion = [];
 
     /* Dejamos el Alfabeto en el nuevo Automata */
     neoAlfabeto = Alfabeto.slice();
-    
     
     /* Dejamos los Estados en el nuevo Automata */
     //Además, cambiamos los Iniciales por No Finales.
@@ -534,11 +536,32 @@ function union (Estados1, Estados2, Alfabeto, Transicion1, Transicion2) {
     }
     console.log("Obtenemos todas las transciones para nuestro nuevo Automata : [" + neoTransicion + "]");
 
+    // Lo imprime a la pagina
+    var unionHTML= document.getElementById('mostrar-calculo');
+    var titulo = document.createElement("h1");
+    titulo.textContent = 'Union';
+    unionHTML.appendChild(titulo);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Estados: '+ neoEstados ;
+    unionHTML.appendChild(estados);
+    // Alfabeto
+    var alfabeto = document.createElement("h3");
+    alfabeto.textContent = 'Alfabeto: '+neoAlfabeto;
+    unionHTML.appendChild(alfabeto);
+    // Transicion
+    var transiciones = document.createElement("h3");
+    transiciones.textContent = 'Transicion: '+neoTransicion;
+    unionHTML.appendChild(transiciones);
+    
     return [neoEstados, neoAlfabeto, neoTransicion];
 }
 
 /** 2.b.2 Complemento */
 function complemento (E) {
+    // limpia la zona para mostrarlo
+    document.getElementById('mostrar-calculo').innerHTML = ''
+
     for (let i = 0; i < E.length; i++) {
         if (E[i][1] == 'f') {
             E[i][1] = 'n';
@@ -563,12 +586,24 @@ function complemento (E) {
             }
         }
     }
-
+    // Lo imprime a la pagina
+    var complementoHTML= document.getElementById('mostrar-calculo');
+    var titulo = document.createElement("h1");
+    titulo.textContent = 'Complemento';
+    complementoHTML.appendChild(titulo);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Estados: '+ E ;
+    complementoHTML.appendChild(estados);
+    // Retorna la variable
     return E;
 }
 
 /** 2.b.3 Concatenación */
 function Concatenacion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2) {
+    // limpia la zona para mostrarlo
+    document.getElementById('mostrar-calculo').innerHTML = '';
+
     var neoEstados = [], neoAlfabeto = [], neoTransiciones = [];
 
     // Guardamos los Estados y las Transiciones del Automata 1 en el nuevo Automata.
@@ -634,7 +669,24 @@ function Concatenacion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2
             }
         }
     }
-
+    // Lo imprime a la pagina
+    var concatenacionHTML= document.getElementById('mostrar-calculo');
+    var titulo = document.createElement("h1");
+    titulo.textContent = 'Concatenación';
+    concatenacionHTML.appendChild(titulo);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Estados: '+ neoEstados;
+    concatenacionHTML.appendChild(estados);
+    // Alfabeto
+    var alfabeto = document.createElement("h3");
+    alfabeto.textContent = 'Alfabeto:  '+ neoAlfabeto;
+    concatenacionHTML.appendChild(alfabeto);
+    // Transiciones
+    var transiciones = document.createElement("h3");
+    transiciones.textContent = 'Transiciones: '+ neoTransiciones;
+    concatenacionHTML.appendChild(transiciones);
+    
     /** ---- */
     // Retornamos el nuevo Automata.
     console.log("Después de todos los cambios, así queda nuestro Automata : ");
@@ -644,16 +696,19 @@ function Concatenacion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2
 
 /** 2.b.4 Intersección */ 
 function Interseccion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2) {
+    // limpia la zona para mostrarlo
+    document.getElementById('mostrar-calculo').innerHTML = '';
+
     var Automata_neo = [], Estados_neo = [], Alfabeto_neo = [], Transicion_neo = [];
     
     // Para obtener la intersección debemos calcular lo siguiente:
     // (L1 ∩ L2) = (L1^c ∪ L2^c)^c
     // Obtenemos los complementos de ambos Estados.
     Estado_1 = complemento(Estado_1);
-    console.log("Estos son los elementos del Estado 1 : [" + Estados_1 + "]");
+    console.log("Estos son los elementos del Estado 1 : [" + Estado_1 + "]");
 
     Estado_2 = complemento(Estado_2);
-    console.log("Estos son los elementos del Estado 2 : [" + Estados_1 + "]");
+    console.log("Estos son los elementos del Estado 2 : [" + Estado_2 + "]");
 
     // Luego, calculamos la Unión.
     Automata_neo = union (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2);
@@ -663,6 +718,24 @@ function Interseccion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2)
     Estados_neo = complemento(Estados_3);
     Alfabeto_neo = Automata_neo;
     Transicion_neo = Automata_neo;
+
+    // Lo imprime a la pagina
+    var interseccionHTML= document.getElementById('mostrar-calculo');
+    var titulo = document.createElement("h1");
+    titulo.textContent = 'Intersección';
+    interseccionHTML.appendChild(titulo);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Estados: '+ Estados_neo;
+    interseccionHTML.appendChild(estados);
+    // Alfabeto
+    var alfabeto = document.createElement("h3");
+    alfabeto.textContent = 'Alfabeto:  '+ Alfabeto_neo;
+    interseccionHTML.appendChild(alfabeto);
+    // Transiciones
+    var transiciones = document.createElement("h3");
+    transiciones.textContent = 'Transiciones: '+ Transicion_neo;
+    interseccionHTML.appendChild(transiciones);
 
     return [Estados_neo, Alfabeto_neo, Transicion_neo];
 }

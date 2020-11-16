@@ -3,7 +3,7 @@
     color: var(--black-fg);
     display: flex;
     height: var(--operaciones-height);
-    font-family: "Robot Condensed", sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     font-weight: 300;
 }
 .mostar-operacion {
@@ -83,4 +83,8 @@
     border: 5px solid var(--automata-bg);
     padding: 15px 0px;
     cursor: pointer;
+}
+
+#mostrar-calculo {
+    margin-left: 30px;
 }
