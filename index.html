@@ -377,7 +377,7 @@
                         <span>Obtener el aut&oacutematas AFD simplificado</span>
                     </a>
                     <div class="operacion-submenu">
-                        <div class="simplificar"></div>
+                        <div id="simplificar"></div>
                     </div>
                 </div>
                 <!-- Operacion 2: Automata a partir de operaciones  -->
@@ -388,22 +388,23 @@
                     </a>
                     <div class="operacion-submenu">
                         <div class="calculo">
-                            <button type="button" id="union" onclick="union()">Unión</button>
-                            <button type="button" id="complemento" onclick="complemento()">Complemento</button>
-                            <button type="button" id="interseccion" onclick="Concatenacion()">Intersección</button>
-                            <button type="button" id="concatenacion" onclick="Interseccion()">Concatenación</button>
+                            <button type="button" id="union" onclick="union(estado1,estado2,alfabeto,transicion1,transicion2)">Unión</button>
+                            <button type="button" id="complemento" onclick="complemento(estado1)">Complemento<br>Automata 1</button>
+                            <button type="button" id="complemento" onclick="complemento(estado2)">Complemento<br>Automata 2</button>
+                            <button type="button" id="interseccion" onclick="Concatenacion(estado1,estado2,alfabeto,transicion1,transicion2)">Intersección</button>
+                            <button type="button" id="concatenacion" onclick="Interseccion(estado1,estado2,alfabeto,transicion1,transicion2)">Concatenación</button>
                         </div>
                         <div id="mostrar-calculo"></div>
                     </div>
                 </div>
                 <!-- Operacion 3: Simplificar los del punto anterior -->
                 <div class="operacion-menu" id="op3">
-                    <a class="link-menu" href="#op3">
+                    <a class="link-menu" href="#op3" onclick="simplificar()">
                         <em class="op-icon"></em>
                         <span>Pasar los aut&oacutematas a AFD y simplificarlos</span>
                     </a>
                     <div class="operacion-submenu">
-                        <div class="simplificar2"></div>
+                        <div id="simplificar2"></div>
                     </div>
                 </div>
             </div>
