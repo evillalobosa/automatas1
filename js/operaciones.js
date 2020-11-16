@@ -1,10 +1,7 @@
 var alfabeto=[];
-var estado1=[];
-var estado2=[];
-var transicion1=[];
-var transicion2=[];
-var T1BOOL;
-var T2BOOL;
+var estado1=[], estado2=[];
+var transicion1=[], transicion2=[];
+var T1BOOL, T2BOOL;
 var contadorBoton = 0;
 
 function setAlfabeto() {
@@ -467,33 +464,7 @@ function afdAnfd(automata) {
 }
 
 /** PARTE 2.b */
-/** 2.b.1 Complemento */
-function complemento (E) {
-    for (let i = 0; i < E.length; i++) {
-        if (E[i][1] == 'f') {
-            E[i][1] = 'n';
-        }
-        else {
-            if (E[i][1] == 'n'){
-                E[i][1] = 'f'
-            }
-            else {
-                if (E[i][1] == 'i') {
-                    E[i][1] = 'if';
-                }
-                else {
-                    if (E[i][1] == 'if') {
-                        E[i][1] = 'i';
-                    }
-                }
-            }
-        }
-    }
-
-    return E;
-}
-
-/** 2.b.2 Unión */
+/** 2.b.1 Unión */
 function union (Estados1, Estados2, Alfabeto, Transicion1, Transicion2) {
     //Nuevo Automata
     var neoEstados = [['qE', 'i']], neoAlfabeto = ['E'], neoTransicion = [];
@@ -567,21 +538,47 @@ function union (Estados1, Estados2, Alfabeto, Transicion1, Transicion2) {
     return [neoEstados, neoAlfabeto, neoTransicion];
 }
 
+/** 2.b.2 Complemento */
+function complemento (E) {
+    for (let i = 0; i < E.length; i++) {
+        if (E[i][1] == 'f') {
+            E[i][1] = 'n';
+        }
+        else {
+            if (E[i][1] == 'n'){
+                E[i][1] = 'f'
+            }
+            else {
+                if (E[i][1] == 'i') {
+                    E[i][1] = 'if';
+                }
+                else {
+                    if (E[i][1] == 'if') {
+                        E[i][1] = 'i';
+                    }
+                }
+            }
+        }
+    }
+
+    return E;
+}
+
 /** 2.b.3 Concatenación */
-function Concatenacion (Automata_1, Automata_2) {
+function Concatenacion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2) {
     var neoEstados = [], neoAlfabeto = [], neoTransiciones = [];
 
     // Guardamos los Estados y las Transiciones del Automata 1 en el nuevo Automata.
-    neoEstados = Automata_1[0].slice();
-    neoTransiciones = Automata_1[2].slice();
+    neoEstados = Estado_1.slice();
+    neoTransiciones = Transicion_1.slice();
 
     /** ---- */
     // Guardamos el Alfabeto
-    neoAlfabeto = Automata_1[1].slice();
+    neoAlfabeto = Alfabeto.slice();
 
     /** ---- */
     //Procedemos a generar las nuevas Transiciones
-    let aux_estados = Automata_2[0].slice();
+    let aux_estados = Estado_2.slice();
     for (let i = 0; i < aux_estados.length; i++) {
         for (let k = 0; k < neoAlfabeto.length; k++) {
             for (let q = 0; q < neoEstados.length; q++) {
@@ -595,8 +592,8 @@ function Concatenacion (Automata_1, Automata_2) {
         }
     }
     // Luego guardamos el resto de Transiciones.
-    for (let i = 0; i < Automata_2[2].length; i++) {
-        neoTransiciones.push(Automata_2[2][i]);
+    for (let i = 0; i < Transicion_2.length; i++) {
+        neoTransiciones.push(Transicion_2[i]);
     }
     
     /** ---- */
@@ -611,7 +608,7 @@ function Concatenacion (Automata_1, Automata_2) {
     
     // Si el Automata 2 posee un Estado Inicial Final dejamos todo como está, a excepción del Estado Inicial que pasa a ser No Final.
     // En caso contrario, los Estados Finales del Automata 1 pasan a ser No Finales.
-    aux_estados = Automata_2[0].slice();
+    aux_estados = Estado_2.slice();
     if (aux_estados[0][1] != 'if') {
         for (let i = 0; i < neoEstados.length - aux_estados.length; i++) {
             if (neoEstados[i][1] == 'f') {
@@ -639,34 +636,26 @@ function Concatenacion (Automata_1, Automata_2) {
 }
 
 /** 2.b.4 Intersección */ 
-function Interseccion (Automata_1, Automata_2) {
-    var Estados_1 = [], Transiciones_1 = [], Alfabeto = [];
-    var Estados_2 = [], Transiciones_2 = [];
-
-    var Estados_3 = [];
+function Interseccion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2) {
+    var Automata_neo = [], Estados_neo = [], Alfabeto_neo = [], Transicion_neo = [];
     
-    // Guardamos los datos en variables separadas.
-    Estados_1 = Automata_1[0];
-    Transiciones_1 = Automata_1[2]
-    Estados_2 = Automata_2[0];
-    Transiciones_2 = Automata_2[2];
-    Alfabeto = Automata_1[1];
-
     // Para obtener la intersección debemos calcular lo siguiente:
     // (L1 ∩ L2) = (L1^c ∪ L2^c)^c
     // Obtenemos los complementos de ambos Estados.
-    Estados_1 = complemento(Estados_1);
-    console.log(Estados_1);
+    Estado_1 = complemento(Estado_1);
+    console.log(Estado_1);
 
-    Estados_2 = complemento(Estados_2);
-    console.log(Estados_2);
+    Estado_2 = complemento(Estado_2);
+    console.log(Estado_2);
 
     // Luego, calculamos la Unión.
-    Automata_3 = union (Estados_1, Estados_2, Alfabeto, Transiciones_1, Transiciones_2);
-    Estados_3 = Automata_3[0];
+    Automata_neo = union (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2);
+    Estados_neo = Automata_3[0];
     
     // Para finaliza, obtenemos el complemento del Automata Final.
-    Estados_3 = complemento(Estados_3);
+    Estados_neo = complemento(Estados_3);
+    Alfabeto_neo = Automata_3[1];
+    Transicion_neo = Automata_3[2];
 
-    return Automata_3;
+    return [Estados_neo, Alfabeto_neo, Transicion_neo];
 }
