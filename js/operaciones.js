@@ -467,20 +467,16 @@ function afdAnfd(automata) {
 /** 2.b.1 Unión */
 function union (Estados1, Estados2, Alfabeto, Transicion1, Transicion2) {
     //Nuevo Automata
-    var neoEstados = [['qE', 'i']], neoAlfabeto = ['E'], neoTransicion = [];
-    
-    let aux = [], i;
+    var neoEstados = [['qE', 'i']], neoAlfabeto = [], neoTransicion = [];
 
     /* Dejamos el Alfabeto en el nuevo Automata */
-    aux = Alfabeto.slice();
-    for (let i = 1; aux.length != 0; i++) {
-        neoAlfabeto[i] = aux.shift();
-    }
+    neoAlfabeto = Alfabeto.slice();
+    
     
     /* Dejamos los Estados en el nuevo Automata */
     //Además, cambiamos los Iniciales por No Finales.
     //Primero con el Automata N°1.
-    for (i = 0; i < Estados1.length; i++) {
+    for (let i = 0; i < Estados1.length; i++) {
         if (Estados1[i][1] === 'i') {
             aux = Estados1[i];
             aux[1] = 'n';
@@ -498,8 +494,9 @@ function union (Estados1, Estados2, Alfabeto, Transicion1, Transicion2) {
         }
         
     }
+    console.log("Guardamos los primeros Estados a nuestro nuevo Automata : [" + neoEstados + "]");
     //Luego, con el Automata N°2.
-    for (i = 0; i < Estados2.length; i++) {
+    for (let i = 0; i < Estados2.length; i++) {
         if (Estados2[i][1] === 'i') {
             aux = Estados2[i];
             aux[1] = 'n';
@@ -516,11 +513,12 @@ function union (Estados1, Estados2, Alfabeto, Transicion1, Transicion2) {
             }
         }
     }
-    
+	console.log("Y listo, nuestro Automata posee todos los Estados que necesitamos : [" + neoEstados + "]");
+
     /* Dejamos las transiciones en el nuevo Automata */
     //Primero con el Automata N°1.
     aux = Transicion1.slice();
-    for (i = 0; aux.length != 0; i++) {
+    for (let i = 0; aux.length != 0; i++) {
         if (i === 0){
             neoTransicion[i] = [neoEstados[0][0], 'E', Estados1[0][0]];
             i++;
@@ -531,9 +529,10 @@ function union (Estados1, Estados2, Alfabeto, Transicion1, Transicion2) {
     }
     //Luego, con el Automata N°2. 
     aux = Transicion2.slice();
-    for (i = neoTransicion.length; aux.length != 0; i++) {
+    for (let i = neoTransicion.length; aux.length != 0; i++) {
         neoTransicion[i] = aux.shift();
     }
+    console.log("Obtenemos todas las transciones para nuestro nuevo Automata : [" + neoTransicion + "]");
 
     return [neoEstados, neoAlfabeto, neoTransicion];
 }
@@ -543,18 +542,22 @@ function complemento (E) {
     for (let i = 0; i < E.length; i++) {
         if (E[i][1] == 'f') {
             E[i][1] = 'n';
+            console.log(E[i] + " pasó de Final a No Final");
         }
         else {
             if (E[i][1] == 'n'){
                 E[i][1] = 'f'
+                console.log(E[i] + " pasó de No Final a Final");
             }
             else {
                 if (E[i][1] == 'i') {
                     E[i][1] = 'if';
+                    console.log(E[i] + " pasó de Inicial a Inicial Final");
                 }
                 else {
                     if (E[i][1] == 'if') {
                         E[i][1] = 'i';
+                        console.log(E[i] + " pasó de Inicial Final a Inicial");
                     }
                 }
             }
@@ -595,7 +598,8 @@ function Concatenacion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2
     for (let i = 0; i < Transicion_2.length; i++) {
         neoTransiciones.push(Transicion_2[i]);
     }
-    
+    console.log("Así es como queda la nueva Transición : [" + neoTransiciones + "]");
+
     /** ---- */
     // Guardamos el resto de los Estados.
     console.log(aux_estados[0][1])
@@ -605,7 +609,8 @@ function Concatenacion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2
             neoEstados[i][1] = 'n';
         }
     }
-    
+    console.log("Continuamos con como queda los nuevos Estados : [" + neoEstados + "]");
+
     // Si el Automata 2 posee un Estado Inicial Final dejamos todo como está, a excepción del Estado Inicial que pasa a ser No Final.
     // En caso contrario, los Estados Finales del Automata 1 pasan a ser No Finales.
     aux_estados = Estado_2.slice();
@@ -632,6 +637,8 @@ function Concatenacion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2
 
     /** ---- */
     // Retornamos el nuevo Automata.
+    console.log("Después de todos los cambios, así queda nuestro Automata : ");
+    console.log("[" + neoEstados + "], [" + neoAlfabeto + "], [" + neoTransiciones + "]");
     return [neoEstados, neoAlfabeto, neoTransiciones];
 }
 
@@ -643,19 +650,19 @@ function Interseccion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2)
     // (L1 ∩ L2) = (L1^c ∪ L2^c)^c
     // Obtenemos los complementos de ambos Estados.
     Estado_1 = complemento(Estado_1);
-    console.log(Estado_1);
+    console.log("Estos son los elementos del Estado 1 : [" + Estados_1 + "]");
 
     Estado_2 = complemento(Estado_2);
-    console.log(Estado_2);
+    console.log("Estos son los elementos del Estado 2 : [" + Estados_1 + "]");
 
     // Luego, calculamos la Unión.
     Automata_neo = union (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2);
-    Estados_neo = Automata_3[0];
+    Estados_neo = Automata_neo;
     
     // Para finaliza, obtenemos el complemento del Automata Final.
     Estados_neo = complemento(Estados_3);
-    Alfabeto_neo = Automata_3[1];
-    Transicion_neo = Automata_3[2];
+    Alfabeto_neo = Automata_neo;
+    Transicion_neo = Automata_neo;
 
     return [Estados_neo, Alfabeto_neo, Transicion_neo];
 }
