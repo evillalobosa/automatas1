@@ -670,3 +670,443 @@ function Interseccion (Automata_1, Automata_2) {
 
     return Automata_3;
 }
+//2.a.- Simplificar
+function E(){
+    if(T1BOOL==false){
+        simplificar(estado1, transicion1);
+    }else{
+        var[estado1AFND, transicion1AFND]=convertirAFND(estado1, transicion1);
+        simplificar(estado1AFND, transicion1AFND);
+    }
+    if(T2BOOL==false){
+        simplificar(estado2, transicion2);
+    }else{
+        var[estado2AFND, transicion2AFND]=convertirAFND(estado2, transicion2);
+        simplificar(estado2AFND, transicion2AFND);
+    }
+}
+function compararDestinos (matriz, estadosA, alfaA){
+    var arrayConjunto = [], estadoConjunto = [], alfaConjunto=alfaA;
+    var k = 0, f = 1 ;
+    arrayConjunto=matriz, estadoConjunto=estadosA, alfaConjunto=alfaA;
+    
+    do{
+        if (JSON.stringify(arrayConjunto[k])==JSON.stringify(arrayConjunto[f])){
+            var nuevoNombre = estadoConjunto[k][0]+";"+estadoConjunto[f][0];
+            console.log(nuevoNombre);
+            var q=0, d=0;
+            
+            do{
+                for(d;d<alfaConjunto.length;d++){
+                    if(arrayConjunto[q][d]==estadoConjunto[k][0] || arrayConjunto[q][d]==estadoConjunto[f][0]){
+                        arrayConjunto[q].splice(d,1,nuevoNombre);
+                    }
+                }
+                q++;
+            }while(q<arrayConjunto.length);
+            
+            for(var w=0;w<estadoConjunto.length;w++){
+                if(estadoConjunto[w][0]==estadoConjunto[k][0] || estadoConjunto[w][0]==estadoConjunto[f][0]){
+                    estadoConjunto[w].splice(0,1,nuevoNombre);
+                }
+            }
+            arrayConjunto.splice(f,1);
+            estadoConjunto.splice(f,1);
+            k=0, f++;
+        }else{
+            f++;                    
+        }
+    }while(k<arrayConjunto.length && f<arrayConjunto.length);
+
+    return [arrayConjunto,estadoConjunto];
+}
+
+function identificaAislados (destinos, estadosAnalizado, alfaAnalizado){
+    var dAUX =[], estadoAUX=[], alfabetoAUX=[], estCont=0, desCont=0, alCont=0, validador=0;
+    dAUX=destinos; estadoAUX=estadosAnalizado, alfabetoAUX=alfaAnalizado;
+    console.log(dAUX);
+    console.log(estadoAUX);
+    
+    do{
+        do{
+            if(desCont==estCont){
+                desCont++,alCont=0;
+            }
+            else{
+                if(dAUX[desCont][alCont]==estadoAUX[estCont][0]){
+                    validador=1, alCont++;
+                    if(alCont>alfabetoAUX.length){
+                        alCont=0, desCont++;
+                    }
+                }
+                else{
+                    alCont++;
+                    if(alCont>alfabetoAUX.length){
+                        alCont=0, desCont++;
+                    }
+                }
+            }
+        }while(desCont<dAUX.length);
+        console.log(validador);
+
+        if(validador==0 && estadoAUX[estCont][1]!=="i" && estadoAUX[estCont][1]!=="if"){
+            console.log("El estado "+estadoAUX[estCont][0]+" es aislado, se elimina.");
+            dAUX.splice(estCont, 1);
+            estadoAUX.splice(estCont,1);
+            estCont++,alCont=0,desCont=0, validador=0;
+        }else{
+                console.log("El estado "+estadoAUX[estCont][0]+" no es aislado, se mantiene.");
+                estCont++, alCont=0, desCont=0, validador=0;
+        }
+    }while(estCont<estadoAUX.length);
+    console.log(dAUX);
+    console.log(estadoAUX);
+    
+    return[dAUX, estadoAUX];
+}
+
+function simplificar (estadoAFD, transAFD){
+    var estadoAux = [], transAux = [], alfaAux=[], tamanoEstados =0;
+    estadoAux=estadoAFD, transAux =transAFD;
+    tamanoEstados=estadoAux.length;
+    for(var treo=1;treo<alfabeto.length;treo++){
+        alfaAux.push(alfabeto[treo]);
+    }
+    console.log("Estados Iniciales, no Finales y finales (C0)"+": "+estadoAux);
+    console.log("Alfabeto: "+alfaAux);
+
+    var MatrizAux= [], ingreso =[], p=0, o=0, v=0;
+    console.log("La matriz que contiene las direcciones debe ser de "+estadoAux.length+" por "+alfaAux.length);
+    
+    do{
+        do{
+            if(transAux[o][0]==estadoAux[p][0] && transAux[o][1]==alfaAux[v]){
+                ingreso.push(transAux[o][2]);
+                v++, o=0;
+            }else{
+                o++;
+            }
+        }while(v<alfaAux.length && o<transAux.length);
+        MatrizAux.push(ingreso), ingreso=[], p++, v=0, o=0;
+    }while(p<estadoAux.length);
+    console.log(MatrizAux);
+    
+    const [destinoAislado, estadoAislado]=identificaAislados(MatrizAux,estadoAux,alfaAux);
+    const [nuevoDestino, estadosFinal]=compararDestinos(destinoAislado,estadoAislado,alfaAux);
+    console.log("Esta es la nueva matriz de destinos: "+nuevoDestino);
+    console.log(nuevoDestino);
+    console.log("Estos son los nuevos estados: "+estadosFinal);
+
+    var transFinal=[];
+    var ingreso3=[], nivelEstado=0, nivelAlfa=0;
+    do{
+        ingreso3.push(estadosFinal[nivelEstado][0]);
+        ingreso3.push(alfaAux[nivelAlfa]);
+        ingreso3.push(nuevoDestino[nivelEstado][nivelAlfa]);
+        transFinal.push(ingreso3);
+        ingreso3=[];
+        nivelAlfa++;
+        if(nivelAlfa==alfaAux.length){
+            nivelEstado++, nivelAlfa=0;
+        }
+    }while(nivelEstado<estadosFinal.length);
+   
+    
+    if(estadosFinal.length==tamanoEstados || transFinal.length==transAux.length){
+        console.log("El automata no se puede simplificar mas.");
+    }else{
+        console.log("La simplificación hizo que el automata finito determinista ingresado con "+tamanoEstados+" Estados y "+Trans.length+" Transiciones pasara a tener "+estadosFinal.length+" Estados y "+transFinal.length+" Transiciones.");
+    }
+    console.log("Los estados luego de la simplificación son:");
+    console.log(estadosFinal);
+    console.log("Las Transiciones luego de la simplificación:")
+    console.log(transFinal);
+    
+    return [estadosFinal, transFinal];
+}
+// 2.a Convertir AFND a AFD
+function agregaEstados(matrizD, estadoD, alfaD){
+    var matrizDES=[], estadoDES=[], alfaDES=[], guardaNombre=[], a=0, b=0, esCombinado=0, guardaEstado=[], ingreso="k";
+    matrizDES=matrizD, estadoDES=estadoD, alfaDES=alfaD;
+
+    do{
+    for(var c=0;c<estadoDES.length;c++){
+            if(matrizDES[a][b]==estadoDES[c][0]){
+            esCombinado=1;
+        }
+    }
+        if(esCombinado==0){
+            estadoDES.push([matrizDES[a][b],"n"]);
+                guardaNombre=matrizDES[a][b].split("");
+                var var1=0;
+                do{
+                    for(var pot=0;pot<guardaNombre.length;pot++){
+                        if(guardaNombre[pot]==";"){
+                            var1=1;
+                        }
+                    }
+                    if(var1==1){
+                        for(var twerk=0;guardaNombre[twerk]!=";";twerk++){
+                            ingreso=ingreso+guardaNombre[twerk];
+                        }
+                        var algo=ingreso.slice(1, ingreso.length);
+                        guardaEstado.push(algo);
+                        do{
+                            guardaNombre.splice(0,1);
+                        }while(guardaNombre[1]==";");
+                        guardaNombre.splice(0,1);
+                        ingreso="k", var1=0;
+                    }else{
+                        if(var1==0){
+                            var algo2="k";
+                            for(var ser=0;ser<guardaNombre.length;ser++){
+                                algo2=algo2+guardaNombre[ser];
+                            }
+                            var algo3=algo2.slice(1, algo2.length);
+                            guardaEstado.push(algo3);
+                            guardaNombre.splice(0, guardaNombre.length);
+                        }
+                    }
+                }while(guardaNombre.length!=0);
+
+                guardaEstado
+            
+                var tro=0, tra=0, tru=0, validadorDelNombre=0, guardaLlegada=[], ingresaLlegada=[], ingresoalgo="k";
+                do{
+                    do{
+                        do{
+                    if(guardaEstado[tro]==estadoDES[tra][0]){
+                        var analisis=matrizDES[tra][tru].split("");
+                        for(var two=0;two<analisis.length;two++){
+                            if(analisis[two]==";"){
+                                validadorDelNombre=1;
+                            }
+                        }
+                            if(validadorDelNombre==1){
+                                var var3=0;
+                                do{
+                                    for(var wq=0;wq<analisis.length;wq++){
+                                        if(analisis[wq]==";"){
+                                            var3=1;
+                                        }
+                                    }
+                                    if(var3==1){
+                                        for(var twerk=0;analisis[twerk]!=";";twerk++){
+                                            ingresoalgo=ingresoalgo+analisis[twerk];
+                                        }
+                                        var algo=ingresoalgo.slice(1, ingresoalgo.length);
+                                        guardaLlegada.push(algo);
+                                        do{
+                                            analisis.splice(0,1);
+                                        }while(analisis[1]==";");
+                                        analisis.splice(0,1);
+                                        ingresoalgo="k", var3=0;
+                                    }else{
+                                        if(var3==0){
+                                            var algo2="k";
+                                            for(var ser=0;ser<analisis.length;ser++){
+                                                algo2=algo2+analisis[ser];
+                                            }
+                                            var algo3=algo2.slice(1, algo2.length);
+                                            guardaLlegada.push(algo3);
+                                            analisis.splice(0, analisis.length); 
+                                            var3=2; 
+                                        }
+                                    }
+                                }while(var3!=2);
+                                tra++;
+                            }else{
+                                if(validadorDelNombre==0){
+                                    guardaLlegada.push(matrizDES[tra][tru]);
+                                }
+                                tra++;
+                            }
+                        }else{
+                            tra++;
+                        }
+                    }while(tra<estadoDES.length);
+                        tro++, tra=0;
+                    }while(tro<guardaEstado.length);
+                    guardaLlegada.sort();
+                    var unicos = Array.from(new Set(guardaLlegada));
+                    var ka="k";
+                    for(var twf=0;twf<unicos.length;twf++){
+                        ka=ka+";"+unicos[twf];
+                    }
+                    var ahoraSi=ka.slice(2, ka.length);
+                    ingresaLlegada.push(ahoraSi);
+                    guardaLlegada=[];
+                    tru++, tra=0, tro=0;
+                }while(tru<alfaDES.length);
+                matrizDES.push(ingresaLlegada);
+            }
+            b++, esCombinado=0;
+                if(b<alfaDES.length){
+                    a++;
+                    b=0;
+                }
+        }while(a<matrizDES.length);
+        matrizDES
+        estadoDES
+        
+    return[matrizDES, estadoDES];
+}
+
+
+
+function convertirAFND (estadoAFND, transAFND){//Solo ingresar automatas finitos no deterministas
+    var eAUX=[], tranAUX=[], aAUX=[];
+    eAUX=estadoAFND, tranAUX=transAFND;
+    for(var ret=1; ret<alfabeto.length;ret++){
+        aAUX.push(alfabeto[ret]);
+    }
+
+    var matrizDestinos=[]; ingresoDestino=[], validaAlfabeto=[], v=0, x=0, k=0, cont1=0;
+    do{
+        do{
+            for(x;x<tranAUX.length;x++){
+                if(eAUX[v][0]==tranAUX[x][0] && aAUX[k]==tranAUX[x][1]){
+                    cont1++;
+                }
+            }
+            validaAlfabeto.push(cont1);
+            cont1=0,x=0, k++;
+        }while(k<aAUX.length);
+        console.log(validaAlfabeto);
+        k=0, x=0;
+        var n=0;
+        do{
+            if(validaAlfabeto[n]==0){
+                ingresoDestino.push("NX");
+                n++;
+            }else{
+                if(validaAlfabeto[n]==1){
+                    var ñ=0
+                    do{
+                        if(eAUX[v][0]==tranAUX[x][0] && aAUX[n]==tranAUX[x][1]){
+                            ingresoDestino.push(tranAUX[x][2]);
+                            ñ=1;
+                        }else{
+                            x++;
+                        }
+                    }while(ñ==0);
+                    x=0, n++;
+                }
+                else{
+                    if(validaAlfabeto[n]>1){
+                        var NNombre="k", estadosMM=[];
+                        do{
+                            if(eAUX[v][0]==tranAUX[x][0] && aAUX[n]==tranAUX[x][1]){
+                                estadosMM.push(tranAUX[x][2]);
+                                x++;
+                            }else{
+                                x++;
+                            }
+                        }while(x<tranAUX.length);
+                        estadosMM.sort();
+                        for(var por=0;por<estadosMM.length;por++){
+                            NNombre=NNombre+";"+estadosMM[por];
+                        }
+                        var Nombre=NNombre.slice(2);
+                        estadosMM=[];
+                        ingresoDestino.push(Nombre), NNombre="k", x=0, n++;
+                    }
+                }
+            }
+        }while(n<validaAlfabeto.length);
+    matrizDestinos.push(ingresoDestino);
+        ingresoDestino=[], validaAlfabeto=[], x=0, n=0, k=0, v++;
+    }while(v<eAUX.length);
+
+    console.log(matrizDestinos);
+    console.log(eAUX);
+
+    var ingresoVariable=[], teo=0, wet=0, contador=1;
+    do{
+        if(matrizDestinos[teo][wet]=="NX"){
+            matrizDestinos[teo].splice(wet, 1, "Nuevo"+contador);
+            for(var hg=0; hg<aAUX.length;hg++){
+                ingresoVariable.push("Nuevo"+contador);
+            }
+            matrizDestinos.push(ingresoVariable);
+            eAUX.push(["Nuevo"+contador,"n"]);
+            ingresoVariable=[];
+            wet++, contador++;
+            if(wet>aAUX.length){
+                wet=0, teo++;
+            }
+        }else{
+            wet++;
+            if(wet>aAUX.length){
+                wet=0, teo++;
+            }
+        }
+    }while(teo<matrizDestinos.length);
+    console.log(matrizDestinos);
+    console.log(eAUX);
+
+    const [matrizConvertida, estadoConvertido]=agregaEstados(matrizDestinos, eAUX, aAUX);
+    
+    var transFinalAFND=[];
+    var ingreso3=[], nivelEstado=0, nivelAlfa=0;
+    do{
+        ingreso3.push(estadoConvertido[nivelEstado][0]);
+        ingreso3.push(aAUX[nivelAlfa]);
+        ingreso3.push(matrizConvertida[nivelEstado][nivelAlfa]);
+        transFinalAFND.push(ingreso3);
+        ingreso3=[];
+        nivelAlfa++;
+        if(nivelAlfa==aAUX.length){
+            nivelEstado++, nivelAlfa=0;
+        }
+    }while(nivelEstado<estadoConvertido.length);
+    return[estadoConvertido, transFinalAFND];
+    console.log(transFinalAFND);
+    console.log(estadoConvertido);
+
+}
+
+//Extra: Identificar si el Automata es AFND o no
+
+function esafnd1 (transicion,Estados1,alfabetoEsAFND){
+    var j=0,i=0, cont=0, cont2=0, tamestados=Estados.length, T=[], E=[], A=[];
+    for(var rio=1;rio<alfabetoEsAFND.length;rio++){
+        A.push(alfabetoEsAFND[rio]);
+    }
+    T=transicion, E=Estados1;
+    do{
+        do{
+            if(A[i]==T[j][1]){
+                cont++;
+                j++;
+                
+            }
+            else{
+                j++;
+            }
+        }while(j<T.length);
+        j=0;
+        console.log(cont);
+        console.log(tamestados);
+        
+        if(cont==tamestados){
+            cont2++;
+            i++;
+            cont=0;
+            
+        }
+        else{
+            
+            cont=0;
+            i++;
+        }
+    }while(i<A.length);
+        if(cont2==A.length){
+            return 0;
+            console.log("es afd");
+        }
+        else{
+            return 1;
+            console.log("no es afd");
+    } 
+}
