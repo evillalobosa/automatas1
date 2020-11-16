@@ -593,7 +593,7 @@ function complemento (E) {
     complementoHTML.appendChild(titulo);
     // Estados
     var estados = document.createElement("h3");
-    estados.textContent = 'Estados: '+ E ;
+    estados.textContent = 'Estados: '+E ;
     complementoHTML.appendChild(estados);
     // Retorna la variable
     return E;
@@ -669,6 +669,9 @@ function Concatenacion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2
             }
         }
     }
+
+    // limpia la zona para mostrarlo
+    document.getElementById('mostrar-calculo').innerHTML = '';
     // Lo imprime a la pagina
     var concatenacionHTML= document.getElementById('mostrar-calculo');
     var titulo = document.createElement("h1");
@@ -676,15 +679,15 @@ function Concatenacion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2
     concatenacionHTML.appendChild(titulo);
     // Estados
     var estados = document.createElement("h3");
-    estados.textContent = 'Estados: '+ neoEstados;
+    estados.textContent = 'Estados: '+neoEstados;
     concatenacionHTML.appendChild(estados);
     // Alfabeto
     var alfabeto = document.createElement("h3");
-    alfabeto.textContent = 'Alfabeto:  '+ neoAlfabeto;
+    alfabeto.textContent = 'Alfabeto:  '+neoAlfabeto;
     concatenacionHTML.appendChild(alfabeto);
     // Transiciones
     var transiciones = document.createElement("h3");
-    transiciones.textContent = 'Transiciones: '+ neoTransiciones;
+    transiciones.textContent = 'Transiciones: '+neoTransiciones;
     concatenacionHTML.appendChild(transiciones);
     
     /** ---- */
@@ -712,13 +715,15 @@ function Interseccion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2)
 
     // Luego, calculamos la Unión.
     Automata_neo = union (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2);
-    Estados_neo = Automata_neo;
+    Estados_neo = Automata_neo[0];
     
     // Para finaliza, obtenemos el complemento del Automata Final.
-    Estados_neo = complemento(Estados_3);
-    Alfabeto_neo = Automata_neo;
-    Transicion_neo = Automata_neo;
+    Estados_neo = complemento(Estados_neo);
+    Alfabeto_neo = Automata_neo[1];
+    Transicion_neo = Automata_neo[2];
 
+     // limpia la zona para mostrarlo
+     document.getElementById('mostrar-calculo').innerHTML = '';
     // Lo imprime a la pagina
     var interseccionHTML= document.getElementById('mostrar-calculo');
     var titulo = document.createElement("h1");
@@ -726,32 +731,33 @@ function Interseccion (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2)
     interseccionHTML.appendChild(titulo);
     // Estados
     var estados = document.createElement("h3");
-    estados.textContent = 'Estados: '+ Estados_neo;
+    estados.textContent = 'Estados: '+Estados_neo;
     interseccionHTML.appendChild(estados);
     // Alfabeto
     var alfabeto = document.createElement("h3");
-    alfabeto.textContent = 'Alfabeto:  '+ Alfabeto_neo;
+    alfabeto.textContent = 'Alfabeto:  '+Alfabeto_neo;
     interseccionHTML.appendChild(alfabeto);
     // Transiciones
     var transiciones = document.createElement("h3");
-    transiciones.textContent = 'Transiciones: '+ Transicion_neo;
+    transiciones.textContent = 'Transiciones: '+Transicion_neo;
     interseccionHTML.appendChild(transiciones);
 
     return [Estados_neo, Alfabeto_neo, Transicion_neo];
 }
+
 //2.a.- Simplificar
 function E(){
     if(T1BOOL==false){
-        simplificar(estado1, transicion1);
+        simplificar(estado1, transicion1, alfabeto);
     }else{
         var[estado1AFND, transicion1AFND]=convertirAFND(estado1, transicion1);
-        simplificar(estado1AFND, transicion1AFND);
+        simplificar(estado1AFND, transicion1AFND, alfabeto);
     }
     if(T2BOOL==false){
-        simplificar(estado2, transicion2);
+        simplificar(estado2, transicion2, alfabeto);
     }else{
         var[estado2AFND, transicion2AFND]=convertirAFND(estado2, transicion2);
-        simplificar(estado2AFND, transicion2AFND);
+        simplificar(estado2AFND, transicion2AFND, alfabeto);
     }
 }
 function compararDestinos (matriz, estadosA, alfaA){
@@ -834,12 +840,15 @@ function identificaAislados (destinos, estadosAnalizado, alfaAnalizado){
     return[dAUX, estadoAUX];
 }
 
-function simplificar (estadoAFD, transAFD){
+function simplificar (estadoAFD, transAFD, alfabetoAFD){
+    // limpia la zona para mostrarlo
+    document.getElementById('simplificar').innerHTML = '';
+    
     var estadoAux = [], transAux = [], alfaAux=[], tamanoEstados =0;
     estadoAux=estadoAFD, transAux =transAFD;
     tamanoEstados=estadoAux.length;
-    for(var treo=1;treo<alfabeto.length;treo++){
-        alfaAux.push(alfabeto[treo]);
+    for(var treo=1;treo<alfabetoAFD.length;treo++){
+        alfaAux.push(alfabetoAFD[treo]);
     }
     console.log("Estados Iniciales, no Finales y finales (C0)"+": "+estadoAux);
     console.log("Alfabeto: "+alfaAux);
@@ -884,14 +893,29 @@ function simplificar (estadoAFD, transAFD){
     if(estadosFinal.length==tamanoEstados || transFinal.length==transAux.length){
         console.log("El automata no se puede simplificar mas.");
     }else{
-        console.log("La simplificación hizo que el automata finito determinista ingresado con "+tamanoEstados+" Estados y "+Trans.length+" Transiciones pasara a tener "+estadosFinal.length+" Estados y "+transFinal.length+" Transiciones.");
+        console.log("La simplificación hizo que el automata finito determinista ingresado con "+tamanoEstados+" Estados y "+transAux.length+" Transiciones pasara a tener "+estadosFinal.length+" Estados y "+transFinal.length+" Transiciones.");
     }
+
+    // Lo imprime a la pagina
+    var simplificarHTML= document.getElementById('simplificar');
+    var titulo = document.createElement("h1");
+    titulo.textContent = 'Simplificación';
+    simplificarHTML.appendChild(titulo);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Los estados luego de la simplificación son: '+ estadosFinal;
+    simplificarHTML.appendChild(estados);
+    // Alfabeto
+    var alfabeto = document.createElement("h3");
+    alfabeto.textContent = 'Las Transiciones luego de la simplificación:  '+ transFinal;
+    simplificarHTML.appendChild(alfabeto);
+
+
     console.log("Los estados luego de la simplificación son:");
     console.log(estadosFinal);
     console.log("Las Transiciones luego de la simplificación:")
     console.log(transFinal);
-    
-    return [estadosFinal, transFinal];
+    return [estadosFinal, transFinal, alfaAux];
 }
 // 2.a Convertir AFND a AFD
 function agregaEstados(matrizD, estadoD, alfaD){
@@ -1127,16 +1151,16 @@ function convertirAFND (estadoAFND, transAFND){//Solo ingresar automatas finitos
             nivelEstado++, nivelAlfa=0;
         }
     }while(nivelEstado<estadoConvertido.length);
-    return[estadoConvertido, transFinalAFND];
     console.log(transFinalAFND);
     console.log(estadoConvertido);
+    return[estadoConvertido, transFinalAFND];
 
 }
 
 //Extra: Identificar si el Automata es AFND o no
 
 function esafnd1 (transicion,Estados1,alfabetoEsAFND){
-    var j=0,i=0, cont=0, cont2=0, tamestados=Estados.length, T=[], E=[], A=[];
+    var j=0,i=0, cont=0, cont2=0, tamestados=Estados1.length, T=[], E=[], A=[];
     for(var rio=1;rio<alfabetoEsAFND.length;rio++){
         A.push(alfabetoEsAFND[rio]);
     }
@@ -1169,11 +1193,401 @@ function esafnd1 (transicion,Estados1,alfabetoEsAFND){
         }
     }while(i<A.length);
         if(cont2==A.length){
+            console.log("Es afd");
             return 0;
-            console.log("es afd");
         }
         else{
+            console.log("No es afd");
             return 1;
-            console.log("no es afd");
     } 
+}
+
+
+// 2.c Simplificar elementos de las operaciones
+/** 2.c.1 Unión */
+function unionC (Estados1, Estados2, Alfabeto, Transicion1, Transicion2) {
+    // limpia la zona para mostrarlo
+    document.getElementById('mostrar-calculoC').innerHTML = ''
+    
+    //Nuevo Automata
+    var neoEstados = [['qE', 'i']], neoAlfabeto = [], neoTransicion = [];
+
+    /* Dejamos el Alfabeto en el nuevo Automata */
+    neoAlfabeto = Alfabeto.slice();
+    
+    /* Dejamos los Estados en el nuevo Automata */
+    //Además, cambiamos los Iniciales por No Finales.
+    //Primero con el Automata N°1.
+    for (let i = 0; i < Estados1.length; i++) {
+        if (Estados1[i][1] === 'i') {
+            aux = Estados1[i];
+            aux[1] = 'n';
+            neoEstados.push(aux);
+        }
+        else {
+            if (Estados1[i][1] === 'if') {
+                aux = Estados1[i];
+                aux[1] = 'f';
+                neoEstados.push(aux);
+            }
+            else {
+                neoEstados.push(Estados1[i]);
+            }
+        }
+        
+    }
+    console.log("Guardamos los primeros Estados a nuestro nuevo Automata : [" + neoEstados + "]");
+    //Luego, con el Automata N°2.
+    for (let i = 0; i < Estados2.length; i++) {
+        if (Estados2[i][1] === 'i') {
+            aux = Estados2[i];
+            aux[1] = 'n';
+            neoEstados.push(aux);
+        }
+        else {
+            if (Estados2[i][1] === 'if') {
+                aux = Estados2[i];
+                aux[1] = 'f';
+                neoEstados.push(aux);
+            }
+            else {
+                neoEstados.push(Estados2[i]);
+            }
+        }
+    }
+	console.log("Y listo, nuestro Automata posee todos los Estados que necesitamos : [" + neoEstados + "]");
+
+    /* Dejamos las transiciones en el nuevo Automata */
+    //Primero con el Automata N°1.
+    aux = Transicion1.slice();
+    for (let i = 0; aux.length != 0; i++) {
+        if (i === 0){
+            neoTransicion[i] = [neoEstados[0][0], 'E', Estados1[0][0]];
+            i++;
+            neoTransicion[i] = [neoEstados[0][0], 'E', Estados2[0][0]];
+        }
+        else 
+            neoTransicion[i] = aux.shift();
+    }
+    //Luego, con el Automata N°2. 
+    aux = Transicion2.slice();
+    for (let i = neoTransicion.length; aux.length != 0; i++) {
+        neoTransicion[i] = aux.shift();
+    }
+    console.log("Obtenemos todas las transciones para nuestro nuevo Automata : [" + neoTransicion + "]");
+   
+    var esTarde = esafnd1(neoTransicion,neoEstados,neoAlfabeto);
+   
+    if(esTarde == 0){
+        var[state1, transition1, alphabet1] = simplificar(neoEstados, neoTransicion, neoAlfabeto);
+    }else{
+        var[estado1AFND, transicion1AFND] = convertirAFND(neoEstados, neoTransicion);
+        var[state1, transition1, alphabet1] = simplificar(estado1AFND, transicion1AFND, neoAlfabeto);
+    }
+
+
+    // Lo imprime a la pagina
+    var unionHTML= document.getElementById('mostrar-calculoC');
+    var titulo = document.createElement("h1");
+    titulo.textContent = 'Union simplificada';
+    unionHTML.appendChild(titulo);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Estados: '+ state1 ;
+    unionHTML.appendChild(estados);
+    // Alfabeto
+    var alfabeto = document.createElement("h3");
+    alfabeto.textContent = 'Alfabeto: '+alphabet1;
+    unionHTML.appendChild(alfabeto);
+    // Transicion
+    var transiciones = document.createElement("h3");
+    transiciones.textContent = 'Transicion: '+transition1;
+    unionHTML.appendChild(transiciones);
+    
+    return [state1, alphabet1, transition1];
+}
+
+/** 2.c.2 Complemento */
+function complementoC1 (E) {
+    // limpia la zona para mostrarlo
+    document.getElementById('mostrar-calculoC').innerHTML = ''
+
+    for (let i = 0; i < E.length; i++) {
+        if (E[i][1] == 'f') {
+            E[i][1] = 'n';
+            console.log(E[i] + " pasó de Final a No Final");
+        }
+        else {
+            if (E[i][1] == 'n'){
+                E[i][1] = 'f'
+                console.log(E[i] + " pasó de No Final a Final");
+            }
+            else {
+                if (E[i][1] == 'i') {
+                    E[i][1] = 'if';
+                    console.log(E[i] + " pasó de Inicial a Inicial Final");
+                }
+                else {
+                    if (E[i][1] == 'if') {
+                        E[i][1] = 'i';
+                        console.log(E[i] + " pasó de Inicial Final a Inicial");
+                    }
+                }
+            }
+        }
+    }
+    var sonLas1 = esafnd1(transicion1,E,alfabeto);
+   
+    if(sonLas1 == 0){
+        var[state1, transition1, alphabet1] = simplificar(E, transicion1, alfabeto);
+    }else{
+        var[estado1AFND, transicion1AFND] = convertirAFND(E, transicion1);
+        var[state1, transition1, alphabet1] = simplificar(estado1AFND, transicion1AFND, alfabeto);
+    }
+
+    // limpia la zona para mostrarlo
+    document.getElementById('mostrar-calculoC').innerHTML = ''
+    // Lo imprime a la pagina
+    var complementoHTML= document.getElementById('mostrar-calculoC');
+    var titulo = document.createElement("h1");
+    titulo.textContent = 'Complemento simplificado';
+    complementoHTML.appendChild(titulo);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Estados: '+state1;
+    complementoHTML.appendChild(estados);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Transiciones: '+transition1;
+    complementoHTML.appendChild(estados);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Alfabeto: '+alphabet1;
+    complementoHTML.appendChild(estados);
+    // Retorna la variable
+    return E;
+}
+function complementoC2 (E) {
+    // limpia la zona para mostrarlo
+    document.getElementById('mostrar-calculoC').innerHTML = ''
+
+    for (let i = 0; i < E.length; i++) {
+        if (E[i][1] == 'f') {
+            E[i][1] = 'n';
+            console.log(E[i] + " pasó de Final a No Final");
+        }
+        else {
+            if (E[i][1] == 'n'){
+                E[i][1] = 'f'
+                console.log(E[i] + " pasó de No Final a Final");
+            }
+            else {
+                if (E[i][1] == 'i') {
+                    E[i][1] = 'if';
+                    console.log(E[i] + " pasó de Inicial a Inicial Final");
+                }
+                else {
+                    if (E[i][1] == 'if') {
+                        E[i][1] = 'i';
+                        console.log(E[i] + " pasó de Inicial Final a Inicial");
+                    }
+                }
+            }
+        }
+    }
+    var sonLas1 = esafnd1(transicion2,E,alfabeto);
+   
+    if(sonLas1 == 0){
+        var[state1, transition1, alphabet1] = simplificar(E, transicion2, alfabeto);
+    }else{
+        var[estado1AFND, transicion1AFND] = convertirAFND(E, transicion2);
+        var[state1, transition1, alphabet1] = simplificar(estado1AFND, transicion1AFND, alfabeto);
+    }
+
+    // limpia la zona para mostrarlo
+    document.getElementById('mostrar-calculoC').innerHTML = ''
+    // Lo imprime a la pagina
+    var complementoHTML= document.getElementById('mostrar-calculoC');
+    var titulo = document.createElement("h1");
+    titulo.textContent = 'Complemento simplificado';
+    complementoHTML.appendChild(titulo);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Estados: '+state1;
+    complementoHTML.appendChild(estados);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Transiciones: '+transition1;
+    complementoHTML.appendChild(estados);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Alfabeto: '+alphabet1;
+    complementoHTML.appendChild(estados);
+    // Retorna la variable
+    return E;
+}
+
+/** 2.c.3 Concatenación */
+function ConcatenacionC (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2) {
+    // limpia la zona para mostrarlo
+    document.getElementById('mostrar-calculoC').innerHTML = '';
+
+    var neoEstados = [], neoAlfabeto = [], neoTransiciones = [];
+
+    // Guardamos los Estados y las Transiciones del Automata 1 en el nuevo Automata.
+    neoEstados = Estado_1.slice();
+    neoTransiciones = Transicion_1.slice();
+
+    /** ---- */
+    // Guardamos el Alfabeto
+    neoAlfabeto = Alfabeto.slice();
+
+    /** ---- */
+    //Procedemos a generar las nuevas Transiciones
+    let aux_estados = Estado_2.slice();
+    for (let i = 0; i < aux_estados.length; i++) {
+        for (let k = 0; k < neoAlfabeto.length; k++) {
+            for (let q = 0; q < neoEstados.length; q++) {
+                if (neoEstados[q][1] == 'f' || neoEstados[q][1] == 'if') {
+                    if (neoTransiciones[i][1] != neoAlfabeto[k]) {
+                        var aux_transiciones = [neoEstados[q][0], neoAlfabeto[k], aux_estados[i][0]];
+                        neoTransiciones.push(aux_transiciones);
+                    }
+                }
+            }
+        }
+    }
+    // Luego guardamos el resto de Transiciones.
+    for (let i = 0; i < Transicion_2.length; i++) {
+        neoTransiciones.push(Transicion_2[i]);
+    }
+    console.log("Así es como queda la nueva Transición : [" + neoTransiciones + "]");
+
+    /** ---- */
+    // Guardamos el resto de los Estados.
+    console.log(aux_estados[0][1])
+    for (let i = neoEstados.length; aux_estados != 0; i++) {
+        neoEstados[i] = aux_estados.shift();
+        if (neoEstados[i][1] == 'i') {
+            neoEstados[i][1] = 'n';
+        }
+    }
+    console.log("Continuamos con como queda los nuevos Estados : [" + neoEstados + "]");
+
+    // Si el Automata 2 posee un Estado Inicial Final dejamos todo como está, a excepción del Estado Inicial que pasa a ser No Final.
+    // En caso contrario, los Estados Finales del Automata 1 pasan a ser No Finales.
+    aux_estados = Estado_2.slice();
+    if (aux_estados[0][1] != 'if') {
+        for (let i = 0; i < neoEstados.length - aux_estados.length; i++) {
+            if (neoEstados[i][1] == 'f') {
+                neoEstados[i][1] = 'n';
+                
+            }
+            else {
+                if (neoEstados[i][1] == 'if') {
+                    neoEstados[i][1] = 'i';
+                }
+            }
+        }
+    }
+    else {
+        for (let i = 0; i < neoEstados.length; i++) {
+            if (aux_estados[0] == neoEstados[i]) {
+                neoEstados[i][1] = 'f';
+            }
+        }
+    }
+
+    var sonLas2 = esafnd1(neoTransiciones,neoEstados,neoAlfabeto);
+   
+    if(sonLas2 == 0){
+        var[state1, transition1, alphabet1] = simplificar(neoEstados, neoTransiciones, neoAlfabeto);
+    }else{
+        var[estado1AFND, transicion1AFND] = convertirAFND(neoEstados, neoTransiciones);
+        var[state1, transition1, alphabet1] = simplificar(estado1AFND, transicion1AFND, neoAlfabeto);
+    }
+
+
+    // limpia la zona para mostrarlo
+    document.getElementById('mostrar-calculoC').innerHTML = '';
+    // Lo imprime a la pagina
+    var concatenacionHTML= document.getElementById('mostrar-calculoC');
+    var titulo = document.createElement("h1");
+    titulo.textContent = 'Concatenación simplificada';
+    concatenacionHTML.appendChild(titulo);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Estados: '+state1;
+    concatenacionHTML.appendChild(estados);
+    // Alfabeto
+    var alfabeto = document.createElement("h3");
+    alfabeto.textContent = 'Alfabeto:  '+alphabet1;
+    concatenacionHTML.appendChild(alfabeto);
+    // Transiciones
+    var transiciones = document.createElement("h3");
+    transiciones.textContent = 'Transiciones: '+transition1;
+    concatenacionHTML.appendChild(transiciones);
+    
+    /** ---- */
+    // Retornamos el nuevo Automata.
+    console.log("Después de todos los cambios, así queda nuestro Automata : ");
+    console.log("[" + neoEstados + "], [" + neoAlfabeto + "], [" + neoTransiciones + "]");
+    return [neoEstados, neoAlfabeto, neoTransiciones];
+}
+
+/** 2.c.4 Intersección */ 
+function InterseccionC (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2) {
+    // limpia la zona para mostrarlo
+    document.getElementById('mostrar-calculoC').innerHTML = '';
+
+    var Automata_neo = [], Estados_neo = [], Alfabeto_neo = [], Transicion_neo = [];
+    
+    // Para obtener la intersección debemos calcular lo siguiente:
+    // (L1 ∩ L2) = (L1^c ∪ L2^c)^c
+    // Obtenemos los complementos de ambos Estados.
+    Estado_1 = complemento(Estado_1);
+    console.log("Estos son los elementos del Estado 1 : [" + Estado_1 + "]");
+
+    Estado_2 = complemento(Estado_2);
+    console.log("Estos son los elementos del Estado 2 : [" + Estado_2 + "]");
+
+    // Luego, calculamos la Unión.
+    Automata_neo = union (Estado_1, Estado_2, Alfabeto, Transicion_1, Transicion_2);
+    Estados_neo = Automata_neo[0];
+    
+    // Para finaliza, obtenemos el complemento del Automata Final.
+    Estados_neo = complemento(Estados_neo);
+    Alfabeto_neo = Automata_neo[1];
+    Transicion_neo = Automata_neo[2];
+
+    var sonLas3 = esafnd1(Transicion_neo,Estados_neo,Alfabeto_neo);
+   
+    if(sonLas3 == 0){
+        var[state1, transition1, alphabet1] = simplificar(Estados_neo, Transicion_neo, Alfabeto_neo);
+    }else{
+        var[estado1AFND, transicion1AFND] = convertirAFND(Estados_neo, Transicion_neo);
+        var[state1, transition1, alphabet1] = simplificar(estado1AFND, transicion1AFND, Alfabeto_neo);
+    }
+
+     // limpia la zona para mostrarlo
+     document.getElementById('mostrar-calculoC').innerHTML = '';
+    // Lo imprime a la pagina
+    var interseccionHTML= document.getElementById('mostrar-calculoC');
+    var titulo = document.createElement("h1");
+    titulo.textContent = 'Intersección simplificada';
+    interseccionHTML.appendChild(titulo);
+    // Estados
+    var estados = document.createElement("h3");
+    estados.textContent = 'Estados: '+state1;
+    interseccionHTML.appendChild(estados);
+    // Alfabeto
+    var alfabeto = document.createElement("h3");
+    alfabeto.textContent = 'Alfabeto:  '+alphabet1;
+    interseccionHTML.appendChild(alfabeto);
+    // Transiciones
+    var transiciones = document.createElement("h3");
+    transiciones.textContent = 'Transiciones: '+transition1;
+    interseccionHTML.appendChild(transiciones);
+
+    return [Estados_neo, Alfabeto_neo, Transicion_neo];
 }

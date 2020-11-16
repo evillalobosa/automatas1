@@ -394,17 +394,24 @@
                             <button type="button" id="interseccion" onclick="Concatenacion(estado1,estado2,alfabeto,transicion1,transicion2)">Concatenación</button>
                             <button type="button" id="concatenacion" onclick="Interseccion(estado1,estado2,alfabeto,transicion1,transicion2)">Intersección</button>
                         </div>
-                        <div id="mostrar-calculo"></div>
+                        <div id="mostrar-calculo" class="mostrar-calculos"></div>
                     </div>
                 </div>
                 <!-- Operacion 3: Simplificar los del punto anterior -->
                 <div class="operacion-menu" id="op3">
-                    <a class="link-menu" href="#op3" onclick="simplificar()">
+                    <a class="link-menu" href="#op3">
                         <em class="op-icon"></em>
                         <span>Pasar los aut&oacutematas a AFD y simplificarlos</span>
                     </a>
                     <div class="operacion-submenu">
-                        <div id="simplificar2"></div>
+                        <div class="calculo">
+                            <button type="button" id="union" onclick="unionC(estado1,estado2,alfabeto,transicion1,transicion2)">Unión</button>
+                            <button type="button" id="complemento" onclick="complementoC1(estado1)">Complemento<br>Automata 1</button>
+                            <button type="button" id="complemento" onclick="complementoC2(estado2)">Complemento<br>Automata 2</button>
+                            <button type="button" id="interseccion" onclick="ConcatenacionC(estado1,estado2,alfabeto,transicion1,transicion2)">Concatenación</button>
+                            <button type="button" id="concatenacion" onclick="InterseccionC(estado1,estado2,alfabeto,transicion1,transicion2)">Intersección</button>
+                        </div>
+                        <div id="mostrar-calculoC" class="mostrar-calculos"></div>
                     </div>
                 </div>
             </div>
